@@ -34,8 +34,9 @@ revealEls.forEach(el => {
 groups.forEach(list => {
   list.forEach((el, i) => el.style.setProperty('--d', Math.min(i * 0.08, 0.4) + 's'));
 });
+// toggles both ways: reveal scrolling down into view, hide scrolling back past it
 const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  entries.forEach(e => e.target.classList.toggle('in', e.isIntersecting));
 }, { threshold: .12 });
 revealEls.forEach(el => io.observe(el));
 
