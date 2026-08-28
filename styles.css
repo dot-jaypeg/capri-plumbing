@@ -526,11 +526,6 @@ footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px}
 @media(prefers-reduced-motion:reduce){.reveal{transition-delay:0s!important}}
 .reveal.in{opacity:1;transform:none}
 
-/* draft banner (remove before final launch) */
-.wf-note{background:var(--navy-950);color:#9db1ec;text-align:center;font-size:12.5px;padding:9px 20px;letter-spacing:.03em;
-  font-family:var(--head);border-bottom:1px solid rgba(255,255,255,.08)}
-.wf-note b{color:#fff}
-
 /* ============================================================
    SUB-PAGE COMPONENTS (shared across interior pages)
    ============================================================ */
