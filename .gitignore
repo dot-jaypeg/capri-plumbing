@@ -1,0 +1,9 @@
+.DS_Store
+
+# Unused source assets -- several exceed GitHub's 100MB file limit and aren't referenced by the site.
+# Compressed, web-ready versions actually used by the site live in assets/video/web/ and ARE tracked.
+assets/video/CAPRI PODCAST_1.mp4
+assets/stock video/
+
+# Design reference only (has its own nested git repo) -- not part of the Capri deliverable
+reference website/
