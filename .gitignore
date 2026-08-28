@@ -1,4 +1,5 @@
 .DS_Store
+node_modules/
 
 # Unused source assets -- several exceed GitHub's 100MB file limit and aren't referenced by the site.
 # Compressed, web-ready versions actually used by the site live in assets/video/web/ and ARE tracked.

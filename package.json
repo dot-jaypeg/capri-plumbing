@@ -1,0 +1,12 @@
+{
+  "name": "capri-plumbing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Capri Plumbing marketing site -- static HTML/CSS/JS served via `serve`.",
+  "scripts": {
+    "start": "serve -l ${PORT:-3000} ."
+  },
+  "dependencies": {
+    "serve": "^14.2.3"
+  }
+}
