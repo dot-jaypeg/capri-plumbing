@@ -4,7 +4,7 @@
   "private": true,
   "description": "Capri Plumbing marketing site -- static HTML/CSS/JS served via `serve`.",
   "scripts": {
-    "start": "serve -l ${PORT:-3000} ."
+    "start": "serve -l tcp://0.0.0.0:${PORT:-3000} ."
   },
   "dependencies": {
     "serve": "^14.2.3"
