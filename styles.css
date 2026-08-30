@@ -109,6 +109,13 @@ footer h2,footer h3,footer h4,
 .btn-accent:hover{background:#b7c5f2;transform:translateY(-2px)}
 .btn-lg{padding:18px 34px;font-size:16px}
 
+/* ---------- preloader / page transition ---------- */
+#preloader{position:fixed;inset:0;z-index:400;background:var(--navy-900);
+  display:flex;align-items:center;justify-content:center;
+  opacity:1;visibility:visible;transition:opacity .4s ease,visibility 0s linear 0s}
+#preloader img{width:min(50vw,260px);height:auto;filter:brightness(0) invert(1)}
+body.loaded #preloader{opacity:0;visibility:hidden;transition:opacity .4s ease,visibility 0s linear .4s}
+
 /* ---------- top utility bar ---------- */
 .utility{background:var(--navy-950);color:#c7cee6;font-size:13px}
 .utility .wrap{display:flex;align-items:center;justify-content:space-between;height:42px;gap:20px}
