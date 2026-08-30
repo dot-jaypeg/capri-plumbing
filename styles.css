@@ -153,8 +153,8 @@ header.nav.nav-transparent .logo img{height:46px}
 .mobile-menu nav .sub{display:grid;padding-left:14px;border-bottom:1px solid rgba(255,255,255,.12)}
 .mobile-menu nav .sub a{font-size:16px;font-weight:500;padding:11px 0;border-bottom:0;color:#c7cee6}
 .nav .nav-cta{display:flex;align-items:center;gap:18px}
-header.nav.nav-transparent .nav ul a{color:#fff}
-header.nav.nav-transparent .nav ul a::after{background:#fff}
+header.nav.nav-transparent nav>ul>li>a{color:#fff}
+header.nav.nav-transparent nav>ul>li>a::after{background:#fff}
 header.nav.nav-transparent .nav-toggle span{background:#fff}
 header.nav.nav-transparent .btn-primary{background:#fff;color:var(--navy-900)}
 header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
@@ -179,6 +179,7 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 @media(prefers-reduced-motion:reduce){.hero-bg{transform:none!important}}
 .hero-copy .eyebrow{color:#cfd8f6}
 .hero-copy .eyebrow::before{background:#cfd8f6}
+.hero-logo{height:clamp(40px,4.4vw,56px);width:auto;margin-bottom:24px;filter:brightness(0) invert(1);opacity:.96}
 .hero h1{font-size:clamp(38px,5.2vw,70px);font-weight:700;margin:0;letter-spacing:-.02em;color:#fff}
 .hero h1 em{font-style:normal;color:#9db1ec}
 .hero p.sub{font-size:19px;color:#d3d8ec;max-width:520px;margin-top:22px}
@@ -194,6 +195,15 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 @media(max-width:760px){
   .hero .hero-trust{position:static;transform:none;margin:40px auto 0;width:fit-content}
 }
+
+/* ---------- emergency callout bar ---------- */
+.emergency-bar{background:linear-gradient(90deg,var(--navy-700),var(--navy-600));position:relative;z-index:2}
+.emergency-bar .wrap{display:flex;align-items:center;justify-content:center;gap:28px;padding:20px 28px;flex-wrap:wrap}
+.emergency-bar .eb-msg{display:flex;align-items:center;gap:14px;color:#e3e8fb;font-size:15.5px;max-width:640px}
+.emergency-bar .eb-msg svg{width:26px;height:26px;stroke:#9db1ec;flex-shrink:0}
+.emergency-bar .eb-msg b{color:#fff;font-family:var(--head)}
+.emergency-bar .btn-accent{flex-shrink:0}
+@media(max-width:760px){.emergency-bar .wrap{justify-content:center;text-align:center;padding:18px 20px}}
 
 /* hero lead form card */
 .leadcard{background:#fff;color:var(--ink);border-radius:var(--radius-lg);padding:34px 32px;
