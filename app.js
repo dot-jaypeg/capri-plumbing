@@ -78,36 +78,11 @@ if (parallaxEls.length && !matchMedia('(prefers-reduced-motion: reduce)').matche
   onParallax();
 }
 
-// ambient rising bubbles in dark/navy sections -- injected here rather than
-// hand-authored per page so every matching section gets them automatically
-if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.querySelectorAll('.hero, .subhero, .cta-band, .oc-band, .finance, .compare, .social').forEach(section => {
-    const field = document.createElement('div');
-    field.className = 'bubble-field';
-    const count = 9;
-    for (let i = 0; i < count; i++) {
-      const b = document.createElement('span');
-      b.className = 'bubble';
-      const size = 6 + Math.random() * 16;
-      b.style.setProperty('--s', size.toFixed(1) + 'px');
-      b.style.setProperty('--x', (Math.random() * 100).toFixed(1) + '%');
-      b.style.setProperty('--drift', (Math.random() * 40 - 20).toFixed(0) + 'px');
-      b.style.setProperty('--dur', (9 + Math.random() * 10).toFixed(1) + 's');
-      b.style.setProperty('--delay', (-Math.random() * 18).toFixed(1) + 's');
-      field.appendChild(b);
-    }
-    section.appendChild(field);
-  });
+// silent looping background clips: don't force autoplay on users who asked
+// for reduced motion -- leave them on the poster frame instead
+if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('.motif-video').forEach(v => v.pause());
 }
-
-// podcast / featured video player: hide the play badge once playback starts
-document.querySelectorAll('.podcast-player').forEach(player => {
-  const video = player.querySelector('video');
-  if (!video) return;
-  video.addEventListener('play', () => player.classList.add('is-playing'));
-  video.addEventListener('pause', () => player.classList.remove('is-playing'));
-  video.addEventListener('ended', () => player.classList.remove('is-playing'));
-});
 
 // mobile off-canvas menu
 (function () {

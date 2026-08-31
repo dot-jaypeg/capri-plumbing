@@ -503,16 +503,21 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
   display:inline-block;transform-origin:center}
 .faq-item.open .faq-q::after{transform:rotate(135deg)}
 /* grid-rows accordion: animates to the real content height at any length,
-   instead of guessing a fixed max-height (which is what made this feel janky) */
+   instead of guessing a fixed max-height (which is what made this feel janky).
+   The bottom padding has to live on the OPEN state only -- padding on the
+   collapsing child ignores min-height:0 and forced a permanent minimum row
+   height even when closed, which is why answers were peeking out at rest. */
 .faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
-.faq-a p{color:var(--muted);font-size:15.5px;padding:0 0 22px;overflow:hidden;min-height:0}
+.faq-a p{color:var(--muted);font-size:15.5px;padding-bottom:0;overflow:hidden;min-height:0;
+  transition:padding-bottom .45s var(--ease)}
 .faq-item.open .faq-a{grid-template-rows:1fr}
-@media(prefers-reduced-motion:reduce){.faq-a,.faq-q::after{transition-duration:.01s}}
+.faq-item.open .faq-a p{padding-bottom:22px}
+@media(prefers-reduced-motion:reduce){.faq-a,.faq-a p,.faq-q::after{transition-duration:.01s}}
 @media(max-width:860px){.area .wrap{grid-template-columns:1fr;gap:48px}}
 
 /* ---------- final CTA ---------- */
 .finalcta{background:var(--bone)}
-.finalcta .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.finalcta .wrap,.wrap.finalcta{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
 .finalcta h2{font-size:clamp(32px,4vw,52px)}
 .finalcta h2 em{font-style:normal;color:var(--steel)}
 .finalcta .lead{color:var(--muted);font-size:18px;margin-top:20px;max-width:460px}
@@ -533,7 +538,7 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
   border-radius:var(--radius);font-family:var(--body);font-size:15px;background:var(--bone);color:var(--ink);resize:vertical}
 .fc-card input:focus,.fc-card select:focus,.fc-card textarea:focus{outline:none;border-color:var(--navy-900);background:#fff}
 .fc-card button{width:100%;margin-top:4px}
-@media(max-width:860px){.finalcta .wrap{grid-template-columns:1fr;gap:44px}}
+@media(max-width:860px){.finalcta .wrap,.wrap.finalcta{grid-template-columns:1fr;gap:44px}}
 
 /* ---------- footer ---------- */
 footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px}
@@ -599,7 +604,7 @@ footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px}
 .split.rev .split-media{order:-1}
 .split-media{border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/3}
 .split-media.tall{aspect-ratio:4/5}
-.split-media img{width:100%;height:100%;object-fit:cover}
+.split-media img,.split-media video{width:100%;height:100%;object-fit:cover}
 .split-body h2{font-size:clamp(28px,3.4vw,42px);margin-top:16px}
 @media(max-width:900px){.split{grid-template-columns:1fr;gap:44px}.split.rev .split-media{order:0}}
 
@@ -717,35 +722,11 @@ body.mm-open{overflow:hidden}
 @keyframes flowMove{to{stroke-dashoffset:-64}}
 @media(prefers-reduced-motion:reduce){.flow-divider .flow-path{animation:none}}
 
-/* --- ambient rising bubbles for dark/navy sections --- */
-.bubble-field{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
-.bubble-field .bubble{position:absolute;bottom:-10%;left:var(--x,50%);width:var(--s,10px);height:var(--s,10px);
-  border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.6),rgba(255,255,255,.06) 72%);
-  animation:bubbleRise var(--dur,12s) linear infinite;animation-delay:var(--delay,0s)}
-@keyframes bubbleRise{
-  0%{transform:translate(0,0);opacity:0}
-  8%{opacity:.6}
-  85%{opacity:.3}
-  100%{transform:translate(var(--drift,18px),-128%);opacity:0}
-}
-@media(prefers-reduced-motion:reduce){.bubble-field{display:none}}
-/* make sure real content always stacks above the bubble field, even where
-   .wrap previously had no (or an equal) z-index of its own */
+/* content always stacks above any decorative absolutely-positioned layer
+   in these sections (kept even without the bubbles, since it's a cheap
+   safety net for whatever motion lives here) */
 .hero .wrap,.subhero .wrap,.cta-band .wrap,.oc-band .wrap,.finance .wrap,.compare .wrap,.social .wrap{
   position:relative;z-index:2}
-
-/* --- podcast / featured video player --- */
-.podcast-player{position:relative;max-width:920px;margin:56px auto 0;border-radius:var(--radius-xl);
-  overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:16/9;background:#000}
-.podcast-player video{width:100%;height:100%;object-fit:cover;display:block}
-.podcast-player .pp-badge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;
-  display:flex;align-items:center;gap:12px;background:rgba(11,20,65,.55);backdrop-filter:blur(6px);
-  border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:16px 26px;color:#fff;
-  font-family:var(--head);font-weight:700;font-size:15px;pointer-events:none;
-  transition:opacity .3s ease,transform .3s ease}
-.podcast-player .pp-badge i{width:44px;height:44px;border-radius:50%;background:#fff;color:var(--navy-900);
-  display:grid;place-items:center;font-size:16px}
-.podcast-player.is-playing .pp-badge{opacity:0;transform:translate(-50%,-50%) scale(.9)}
 
 /* --- price-card droplet drip on hover --- */
 .price-card{position:relative;overflow:visible}
