@@ -199,13 +199,30 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 .trust-stats .t{display:flex;flex-direction:column;line-height:1.18;position:relative;padding-right:44px;
   transition:transform .3s var(--ease),opacity .7s var(--ease) var(--d,0s)}
 .trust-stats .t:hover{transform:translateY(-4px)}
-.trust-stats .t:not(:last-child)::after{content:"";position:absolute;right:0;top:50%;transform:translateY(-50%);width:1px;height:42px;background:rgba(255,255,255,.22)}
+.trust-stats .t:not(:last-child)::after{content:"";position:absolute;right:0;top:50%;transform:translateY(-50%);
+  width:3px;height:46px;border-radius:3px;
+  background:repeating-linear-gradient(180deg,rgba(157,177,236,.6) 0 3px,rgba(255,255,255,.14) 3px 6px,transparent 6px 11px)}
 .trust-stats .t b{font-family:var(--head);font-size:32px;color:#fff}
 .trust-stats .t span{font-size:14.5px;color:#e3e8fb;letter-spacing:.02em}
 .trust-stats .stars{color:var(--gold);font-size:20px;letter-spacing:3px;display:inline-block;animation:starsTwinkle 3.4s ease-in-out infinite}
 @keyframes starsTwinkle{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.72;transform:scale(1.06)}}
 @media(prefers-reduced-motion:reduce){.trust-stats .stars{animation:none}}
 @media(max-width:640px){.trust-stats{gap:28px}.trust-stats .t{padding-right:28px}.trust-stats .t b{font-size:26px}}
+
+/* instrument-panel gauge badges for the homepage stats bar: the plain gauge-ic
+   svg gets wrapped in a glowing circular plate, and once revealed its needle
+   keeps a slow idle sway rather than sitting frozen -- this bar stays on
+   screen far longer than a one-time scroll reveal warrants */
+.trust-stats .gauge-badge{display:flex;align-items:center;justify-content:center;align-self:flex-start;
+  width:42px;height:42px;border-radius:50%;flex:none;margin-bottom:8px;
+  background:radial-gradient(circle at 34% 30%,rgba(157,177,236,.28),rgba(11,20,65,.6) 72%);
+  border:1px solid rgba(157,177,236,.4);
+  box-shadow:0 0 0 1px rgba(255,255,255,.05) inset,0 0 18px rgba(157,177,236,.18),0 4px 14px rgba(0,0,0,.28)}
+.trust-stats .gauge-badge .gauge-ic{width:26px;height:26px;color:#bcc9f5}
+@keyframes gaugeIdle{0%,100%{transform:rotate(50deg)}50%{transform:rotate(60deg)}}
+.trust-stats .gauge-in .gauge-needle{animation:gaugeIdle 3.6s ease-in-out 1s infinite}
+@media(prefers-reduced-motion:reduce){.trust-stats .gauge-in .gauge-needle{animation:none}}
+@media(max-width:640px){.trust-stats .gauge-badge{width:34px;height:34px}.trust-stats .gauge-badge .gauge-ic{width:21px;height:21px}}
 
 /* ---------- emergency callout bar ---------- */
 .emergency-bar{background:linear-gradient(90deg,var(--navy-700),var(--navy-600));position:relative;z-index:2}
