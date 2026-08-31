@@ -401,8 +401,16 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
   width:44px;height:44px;border:1.5px solid var(--navy-900);border-radius:50%;display:grid;place-items:center;margin-bottom:22px}
 .how-step h3{font-size:19px}
 .how-step p{color:var(--muted);font-size:14.5px;margin-top:10px}
-.how-step:not(:last-child)::after{content:"";position:absolute;top:56px;right:-13px;width:26px;height:1.5px;
-  background:var(--line);z-index:2}
+.how-step:not(:last-child)::after{content:"";position:absolute;top:50px;right:-13px;width:26px;height:10px;
+  border-radius:100px;z-index:2;background-color:var(--line);
+  background-image:
+    linear-gradient(90deg,transparent 0%,rgba(88,118,196,.9) 15%,transparent 32%),
+    repeating-linear-gradient(90deg,rgba(11,20,65,.16) 0 2px,transparent 2px 9px),
+    linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,0) 45%,rgba(11,20,65,.14));
+  background-size:70% 100%,auto 100%,100% 100%;
+  background-repeat:no-repeat,repeat-x,no-repeat;
+  background-position:-70% 0,0 0,0 0;
+  animation:pipeFlow 2.8s linear infinite}
 @media(max-width:900px){.how-grid{grid-template-columns:1fr 1fr}.how-step::after{display:none!important}}
 @media(max-width:520px){.how-grid{grid-template-columns:1fr}}
 
@@ -640,7 +648,9 @@ footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px}
 .price-card.featured .badge-best{position:absolute;top:-13px;left:30px;background:var(--navy-900);color:#fff;
   font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 13px;border-radius:100px}
 .price-card .p-name{font-family:var(--head);font-size:20px;color:var(--navy-900)}
-.price-card .p-amount{font-family:var(--head);font-size:44px;color:var(--navy-900);margin-top:14px;line-height:1}
+.price-card .p-amount{font-family:var(--head);font-size:44px;color:var(--navy-900);margin-top:14px;line-height:1;
+  display:flex;align-items:center;gap:10px}
+.price-card .p-amount .gauge-ic{color:var(--steel)}
 .price-card .p-amount span{font-size:16px;color:var(--muted);font-weight:400}
 .price-card .p-desc{color:var(--muted);font-size:14.5px;margin-top:14px;flex-grow:1}
 .price-card .btn{margin-top:24px}
@@ -658,8 +668,7 @@ footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px}
   display:grid;place-items:center;margin:0 auto 18px;font-size:22px}
 .process-step h3{font-size:17px}
 .process-step p{color:var(--muted);font-size:14px;margin-top:10px;line-height:1.55}
-.process-arrow{display:flex;align-items:center;justify-content:center;color:var(--line);font-size:18px;
-  align-self:center;padding:0 6px;flex:none}
+.process-arrow{display:flex;align-items:center;justify-content:center;align-self:center;padding:0 6px;flex:none}
 @media(max-width:900px){
   .process-flow{flex-direction:column;align-items:center}
   .process-arrow{transform:rotate(90deg);margin:-4px 0}
@@ -713,14 +722,25 @@ body.mm-open{overflow:hidden}
    MOTION -- flowing pipe dividers, ambient bubbles, podcast player
    ============================================================ */
 
-/* --- flowing pipe/water divider between sections --- */
-.flow-divider{width:100%;height:56px;overflow:hidden;line-height:0;background:inherit}
-.flow-divider svg{width:100%;height:100%;display:block}
-.flow-divider .flow-path{fill:none;stroke:var(--steel);stroke-width:3;stroke-linecap:round;
-  stroke-dasharray:16 16;animation:flowMove 2.4s linear infinite;opacity:.55}
-.flow-divider.on-dark .flow-path{stroke:#9db1ec;opacity:.7}
-@keyframes flowMove{to{stroke-dashoffset:-64}}
-@media(prefers-reduced-motion:reduce){.flow-divider .flow-path{animation:none}}
+/* --- drawn pipe: a reusable "actual pipe" visual (body + flange rings +
+   a flow pulse that travels through it), used both as a full section
+   divider and as the compact connector between sequential step cards --- */
+.pipe{
+  border-radius:100px;background-color:var(--navy-800);
+  background-image:
+    linear-gradient(90deg,transparent 0%,rgba(157,177,236,.95) 15%,transparent 32%),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.16) 0 2px,transparent 2px 30px),
+    linear-gradient(180deg,rgba(255,255,255,.32),rgba(255,255,255,0) 45%,rgba(0,0,0,.2));
+  background-size:70% 100%,auto 100%,100% 100%;
+  background-repeat:no-repeat,repeat-x,no-repeat;
+  background-position:-70% 0,0 0,0 0;
+  animation:pipeFlow 2.8s linear infinite;
+}
+@keyframes pipeFlow{to{background-position:170% 0,0 0,0 0}}
+.pipe-divider{width:100%;padding:24px 0;overflow:hidden}
+.pipe-divider .pipe{height:12px;width:100%;box-shadow:var(--shadow-sm)}
+.pipe-connector{width:48px;height:11px}
+@media(prefers-reduced-motion:reduce){.pipe,.how-step:not(:last-child)::after{animation:none}}
 
 /* content always stacks above any decorative absolutely-positioned layer
    in these sections (kept even without the bubbles, since it's a cheap
@@ -735,9 +755,15 @@ body.mm-open{overflow:hidden}
 .price-card:hover .price-drip{opacity:1;animation:dripFall 1.1s ease-in infinite}
 @keyframes dripFall{0%{transform:translateY(-6px);opacity:0}20%{opacity:1}100%{transform:translateY(18px);opacity:0}}
 
-/* --- gentle continuous motion on the process-flow connector arrows ---
-   (the parent .process-arrow handles the 90deg rotation at mobile widths,
-   so this child animation stays rotation-free to avoid compounding it) */
-.process-arrow i{display:inline-block;animation:arrowNudge 1.6s ease-in-out infinite}
-@keyframes arrowNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
-@media(prefers-reduced-motion:reduce){.process-arrow i,.price-card:hover .price-drip{animation:none}}
+/* --- gauge-dial stat accent: a small pressure-gauge that sweeps its
+   needle into place once its stat scrolls into view --- */
+.gauge-ic{width:30px;height:30px;flex:none}
+.gauge-ic circle.gauge-ring{fill:none;stroke:currentColor;stroke-width:2;opacity:.35}
+.gauge-ic circle.gauge-hub{fill:currentColor}
+.gauge-ic .gauge-needle{stroke:currentColor;stroke-width:2.5;stroke-linecap:round;
+  transform-origin:18px 18px;transform:rotate(-95deg);
+  transition:transform 1s cubic-bezier(.34,1.56,.64,1)}
+.gauge-in .gauge-needle{transform:rotate(55deg)}
+@media(prefers-reduced-motion:reduce){.gauge-ic .gauge-needle{transition-duration:.01s}}
+
+@media(prefers-reduced-motion:reduce){.price-card:hover .price-drip{animation:none}}

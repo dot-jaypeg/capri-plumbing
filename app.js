@@ -78,6 +78,25 @@ if (parallaxEls.length && !matchMedia('(prefers-reduced-motion: reduce)').matche
   onParallax();
 }
 
+// gauge-dial stat accent: a small pressure-gauge icon that sweeps its
+// needle into place once the stat it's attached to scrolls into view.
+// Injected rather than hand-authored so every trust stat / price amount
+// on every page gets one automatically.
+(function () {
+  const GAUGE_SVG = '<svg class="gauge-ic" viewBox="0 0 36 36" aria-hidden="true">' +
+    '<circle class="gauge-ring" cx="18" cy="18" r="15"/>' +
+    '<line class="gauge-needle" x1="18" y1="18" x2="18" y2="7"/>' +
+    '<circle class="gauge-hub" cx="18" cy="18" r="2.5"/>' +
+    '</svg>';
+  const targets = document.querySelectorAll('.trust-stats .t, .subhero-stats .t, .price-card .p-amount');
+  if (!targets.length) return;
+  targets.forEach(el => el.insertAdjacentHTML('afterbegin', GAUGE_SVG));
+  const gio = new IntersectionObserver((entries) => {
+    entries.forEach(e => e.target.querySelector('.gauge-ic').classList.toggle('gauge-in', e.isIntersecting));
+  }, { threshold: .4 });
+  targets.forEach(el => gio.observe(el));
+})();
+
 // silent looping background clips: don't force autoplay on users who asked
 // for reduced motion -- leave them on the poster frame instead
 if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
