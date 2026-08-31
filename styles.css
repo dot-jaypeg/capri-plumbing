@@ -195,7 +195,7 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 .hero h1 em{font-style:normal;color:#9db1ec}
 .hero p.sub{font-size:19px;color:#d3d8ec;max-width:520px;margin-top:22px}
 .hero .hero-actions{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap}
-.trust-stats{display:flex;gap:40px;flex-wrap:wrap;align-items:center;justify-content:center;flex-shrink:0}
+.trust-stats{display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start;justify-content:center;flex-shrink:0}
 .trust-stats .t{display:flex;flex-direction:column;line-height:1.18;position:relative;padding-right:40px;
   transition:transform .3s var(--ease),opacity .7s var(--ease) var(--d,0s)}
 .trust-stats .t:hover{transform:translateY(-4px)}
@@ -214,7 +214,7 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
   animation:pipeFlowVert 2.6s linear infinite}
 @keyframes pipeFlowVert{to{background-position:0 170%,0 0,0 0}}
 .trust-stats .t b{font-family:var(--head);font-size:32px;color:#fff}
-.trust-stats .t span{font-size:14.5px;color:#e3e8fb;letter-spacing:.02em}
+.trust-stats .t span:not(.stars){font-size:14.5px;color:#e3e8fb;letter-spacing:.02em}
 .trust-stats .stars{color:var(--gold);font-size:20px;letter-spacing:3px;display:inline-block;animation:starsTwinkle 3.4s ease-in-out infinite}
 @keyframes starsTwinkle{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.72;transform:scale(1.06)}}
 @media(prefers-reduced-motion:reduce){.trust-stats .stars{animation:none}.trust-stats .t:not(:last-child)::after{animation:none}}
