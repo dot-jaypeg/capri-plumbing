@@ -136,14 +136,14 @@ header.nav{
 header.nav.scrolled{box-shadow:var(--shadow-sm)}
 header.nav.nav-transparent{background:transparent;border-bottom:1px solid transparent;box-shadow:none}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:84px;gap:24px}
-.nav .logo{display:inline-flex;align-items:center;border-radius:100px;opacity:1;
-  transition:opacity .35s ease,background-color .35s ease,box-shadow .35s ease,padding .35s ease}
-.nav .logo img{height:62px;transition:height .3s ease}
-/* interior pages have no logo of their own in the subhero, so keep the nav's visible in a legible pill */
-header.nav.nav-transparent .logo{background:#fff;padding:8px 16px;box-shadow:var(--shadow-sm)}
-header.nav.nav-transparent .logo img{height:46px}
+.nav .logo{position:relative;display:inline-flex;align-items:center;opacity:1;transition:opacity .35s ease}
+.nav .logo img{height:62px;transition:opacity .35s ease,height .3s ease}
+.nav .logo .logo-light{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);opacity:0}
+/* interior pages have no logo of their own in the subhero -- swap to the white cutout, no background needed */
+header.nav.nav-transparent .logo .logo-dark{opacity:0}
+header.nav.nav-transparent .logo .logo-light{opacity:1}
 /* the homepage hero carries its own big logo already -- hide the redundant nav one until scrolled past it */
-body:has(.hero) header.nav.nav-transparent .logo{opacity:0;background:none;padding:0;box-shadow:none;pointer-events:none}
+body:has(.hero) header.nav.nav-transparent .logo{opacity:0;pointer-events:none}
 .nav ul{list-style:none;display:flex;gap:30px;align-items:center}
 .nav ul a{font-family:var(--head);font-size:14.5px;font-weight:600;color:var(--ink-700);position:relative;padding:6px 0;transition:color .35s ease}
 .nav ul a::after{content:"";position:absolute;left:0;bottom:0;height:2px;border-radius:2px;width:0;background:var(--navy-900);transition:width .3s var(--ease),background-color .35s ease}
