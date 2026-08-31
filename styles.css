@@ -195,13 +195,15 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 .hero h1 em{font-style:normal;color:#9db1ec}
 .hero p.sub{font-size:19px;color:#d3d8ec;max-width:520px;margin-top:22px}
 .hero .hero-actions{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap}
-.trust-stats{display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start;justify-content:center;flex-shrink:0}
-.trust-stats .t{display:flex;flex-direction:column;line-height:1.18;position:relative;padding-right:40px;
+.trust-stats{display:flex;gap:64px;flex-wrap:wrap;align-items:flex-start;justify-content:center;flex-shrink:0}
+.trust-stats .t{display:flex;flex-direction:column;line-height:1.18;position:relative;
   transition:transform .3s var(--ease),opacity .7s var(--ease) var(--d,0s)}
 .trust-stats .t:hover{transform:translateY(-4px)}
 /* a literal short length of pipe stands in for the plain divider line --
-   same flange/sheen technique as .pipe, just rotated to run vertically */
-.trust-stats .t:not(:last-child)::after{content:"";position:absolute;right:0;top:30px;transform:translateY(-50%);
+   same flange/sheen technique as .pipe, just rotated to run vertically.
+   centered in the gap itself (not on padding) so column spacing has a
+   single source of truth instead of two competing values */
+.trust-stats .t:not(:last-child)::after{content:"";position:absolute;right:-32px;top:30px;transform:translateY(-50%);
   width:9px;height:58px;border-radius:100px;z-index:1;background-color:var(--navy-800);
   background-image:
     linear-gradient(180deg,transparent 0%,rgba(157,177,236,.95) 15%,transparent 32%),
@@ -218,8 +220,8 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 .trust-stats .stars{color:var(--gold);font-size:20px;letter-spacing:3px;display:inline-block;animation:starsTwinkle 3.4s ease-in-out infinite}
 @keyframes starsTwinkle{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.72;transform:scale(1.06)}}
 @media(prefers-reduced-motion:reduce){.trust-stats .stars{animation:none}.trust-stats .t:not(:last-child)::after{animation:none}}
-@media(max-width:640px){.trust-stats{gap:24px}.trust-stats .t{padding-right:24px}.trust-stats .t b{font-size:26px}
-  .trust-stats .t:not(:last-child)::after{height:44px;width:7px;top:23px}}
+@media(max-width:640px){.trust-stats{gap:40px}.trust-stats .t b{font-size:26px}
+  .trust-stats .t:not(:last-child)::after{height:44px;width:7px;top:23px;right:-20px}}
 
 /* instrument-panel gauge dials for the homepage stats bar: a chrome-style
    bezel (conic-gradient rim + radial-gradient face) around a real gauge
@@ -227,7 +229,7 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
    a decoration -- needle keeps a slow idle sway once revealed since this
    bar stays on screen far longer than a one-time scroll reveal warrants */
 .trust-stats .gauge-badge{position:relative;display:flex;align-items:center;justify-content:center;align-self:flex-start;
-  width:60px;height:60px;border-radius:50%;flex:none;margin-bottom:10px;padding:4px;
+  width:60px;height:60px;border-radius:50%;flex:none;margin-bottom:16px;padding:4px;
   background:conic-gradient(from -40deg,#e3e9fb,#8fa1e0 22%,#33417f 50%,#8fa1e0 78%,#e3e9fb 100%);
   box-shadow:0 6px 16px rgba(0,0,0,.32)}
 .trust-stats .gauge-badge::before{content:"";position:absolute;inset:4px;border-radius:50%;z-index:0;
@@ -253,8 +255,8 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 
 /* ---------- emergency callout bar ---------- */
 .emergency-bar{background:linear-gradient(90deg,var(--navy-700),var(--navy-600));position:relative;z-index:2}
-.emergency-bar .wrap{display:flex;align-items:center;justify-content:center;padding:38px 28px;flex-wrap:wrap}
-@media(max-width:760px){.emergency-bar .wrap{padding:28px 20px}}
+.emergency-bar .wrap{display:flex;align-items:center;justify-content:center;padding:46px 28px;flex-wrap:wrap}
+@media(max-width:760px){.emergency-bar .wrap{padding:32px 20px}}
 
 /* ---------- emergency floating toast ---------- */
 .emergency-toast{position:fixed;right:24px;bottom:24px;z-index:150;display:flex;flex-direction:column;gap:12px;
@@ -628,6 +630,11 @@ footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px}
 .subhero-bg::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(6,11,30,.55) 0%,rgba(6,11,30,.4) 45%,rgba(6,11,30,.85) 100%)}
 .subhero .wrap{position:relative;z-index:2}
+/* lets a page shift its hero copy to whichever side of the background
+   media should stay visually clear -- used on About so the text sits
+   over the empty side of the video instead of the person we want in focus */
+.subhero-text{max-width:600px}
+.subhero-text.push-right{margin-left:auto}
 .crumb{display:flex;align-items:center;gap:9px;font-size:12.5px;color:#b7c0e2;margin-bottom:22px;flex-wrap:wrap}
 .crumb a{color:#b7c0e2;transition:color .2s}
 .crumb a:hover{color:#fff}
