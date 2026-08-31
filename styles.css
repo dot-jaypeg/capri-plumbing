@@ -635,7 +635,7 @@ footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px}
 .cta-band p{color:#c7cee6;font-size:18px;margin-top:18px;max-width:560px;margin-left:auto;margin-right:auto}
 .cta-actions{margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .cta-band .btn-primary{background:#fff;color:var(--navy-900)}
-.cta-band .btn-primary:hover{background:var(--bone)}
+.cta-band .btn-primary:hover{background:#9db1ec;color:#fff}
 
 /* --- specials / pricing table --- */
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
