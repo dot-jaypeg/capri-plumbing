@@ -134,7 +134,7 @@ header.nav{
   transition:background-color .45s ease,border-color .45s ease,box-shadow .3s;
 }
 header.nav.scrolled{box-shadow:var(--shadow-sm)}
-header.nav.nav-transparent{background:linear-gradient(180deg,rgba(6,11,30,.5) 0%,rgba(6,11,30,.22) 70%,rgba(6,11,30,0) 100%);border-bottom:1px solid transparent}
+header.nav.nav-transparent{background:transparent;border-bottom:1px solid transparent;box-shadow:none}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:84px;gap:24px}
 .nav .logo{display:inline-flex;align-items:center;border-radius:100px;opacity:1;
   transition:opacity .35s ease,background-color .35s ease,box-shadow .35s ease,padding .35s ease}
@@ -578,9 +578,9 @@ footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px}
 @media(max-width:760px){.subhero{padding:172px 0 60px}}
 .subhero-bg{position:absolute;left:0;right:0;top:-8%;height:118%;z-index:0;will-change:transform}
 @media(prefers-reduced-motion:reduce){.subhero-bg{transform:none!important}}
-.subhero-bg img,.subhero-bg video{width:100%;height:100%;object-fit:cover;opacity:.24}
+.subhero-bg img,.subhero-bg video{width:100%;height:100%;object-fit:cover;opacity:.6}
 .subhero-bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(6,11,30,.88) 0%,rgba(6,11,30,.8) 40%,rgba(6,11,30,.96) 100%)}
+  background:linear-gradient(180deg,rgba(6,11,30,.55) 0%,rgba(6,11,30,.4) 45%,rgba(6,11,30,.85) 100%)}
 .subhero .wrap{position:relative;z-index:2}
 .crumb{display:flex;align-items:center;gap:9px;font-size:12.5px;color:#b7c0e2;margin-bottom:22px;flex-wrap:wrap}
 .crumb a{color:#b7c0e2;transition:color .2s}
