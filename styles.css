@@ -195,34 +195,61 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 .hero h1 em{font-style:normal;color:#9db1ec}
 .hero p.sub{font-size:19px;color:#d3d8ec;max-width:520px;margin-top:22px}
 .hero .hero-actions{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap}
-.trust-stats{display:flex;gap:44px;flex-wrap:wrap;align-items:center;justify-content:center;flex-shrink:0}
-.trust-stats .t{display:flex;flex-direction:column;line-height:1.18;position:relative;padding-right:44px;
+.trust-stats{display:flex;gap:40px;flex-wrap:wrap;align-items:center;justify-content:center;flex-shrink:0}
+.trust-stats .t{display:flex;flex-direction:column;line-height:1.18;position:relative;padding-right:40px;
   transition:transform .3s var(--ease),opacity .7s var(--ease) var(--d,0s)}
 .trust-stats .t:hover{transform:translateY(-4px)}
+/* a literal short length of pipe stands in for the plain divider line --
+   same flange/sheen technique as .pipe, just rotated to run vertically */
 .trust-stats .t:not(:last-child)::after{content:"";position:absolute;right:0;top:50%;transform:translateY(-50%);
-  width:3px;height:46px;border-radius:3px;
-  background:repeating-linear-gradient(180deg,rgba(157,177,236,.6) 0 3px,rgba(255,255,255,.14) 3px 6px,transparent 6px 11px)}
+  width:9px;height:58px;border-radius:100px;z-index:1;background-color:var(--navy-800);
+  background-image:
+    linear-gradient(180deg,transparent 0%,rgba(157,177,236,.95) 15%,transparent 32%),
+    repeating-linear-gradient(180deg,rgba(255,255,255,.18) 0 2px,transparent 2px 9px),
+    linear-gradient(90deg,rgba(255,255,255,.3),rgba(255,255,255,0) 45%,rgba(0,0,0,.22));
+  background-size:100% 70%,100% auto,100% 100%;
+  background-repeat:no-repeat,repeat-y,no-repeat;
+  background-position:0 -70%,0 0,0 0;
+  box-shadow:var(--shadow-sm);
+  animation:pipeFlowVert 2.6s linear infinite}
+@keyframes pipeFlowVert{to{background-position:0 170%,0 0,0 0}}
 .trust-stats .t b{font-family:var(--head);font-size:32px;color:#fff}
 .trust-stats .t span{font-size:14.5px;color:#e3e8fb;letter-spacing:.02em}
 .trust-stats .stars{color:var(--gold);font-size:20px;letter-spacing:3px;display:inline-block;animation:starsTwinkle 3.4s ease-in-out infinite}
 @keyframes starsTwinkle{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.72;transform:scale(1.06)}}
-@media(prefers-reduced-motion:reduce){.trust-stats .stars{animation:none}}
-@media(max-width:640px){.trust-stats{gap:28px}.trust-stats .t{padding-right:28px}.trust-stats .t b{font-size:26px}}
+@media(prefers-reduced-motion:reduce){.trust-stats .stars{animation:none}.trust-stats .t:not(:last-child)::after{animation:none}}
+@media(max-width:640px){.trust-stats{gap:24px}.trust-stats .t{padding-right:24px}.trust-stats .t b{font-size:26px}
+  .trust-stats .t:not(:last-child)::after{height:44px;width:7px}}
 
-/* instrument-panel gauge badges for the homepage stats bar: the plain gauge-ic
-   svg gets wrapped in a glowing circular plate, and once revealed its needle
-   keeps a slow idle sway rather than sitting frozen -- this bar stays on
-   screen far longer than a one-time scroll reveal warrants */
-.trust-stats .gauge-badge{display:flex;align-items:center;justify-content:center;align-self:flex-start;
-  width:42px;height:42px;border-radius:50%;flex:none;margin-bottom:8px;
-  background:radial-gradient(circle at 34% 30%,rgba(157,177,236,.28),rgba(11,20,65,.6) 72%);
-  border:1px solid rgba(157,177,236,.4);
-  box-shadow:0 0 0 1px rgba(255,255,255,.05) inset,0 0 18px rgba(157,177,236,.18),0 4px 14px rgba(0,0,0,.28)}
-.trust-stats .gauge-badge .gauge-ic{width:26px;height:26px;color:#bcc9f5}
+/* instrument-panel gauge dials for the homepage stats bar: a chrome-style
+   bezel (conic-gradient rim + radial-gradient face) around a real gauge
+   face with tick marks, sized up so it reads as a focal dial rather than
+   a decoration -- needle keeps a slow idle sway once revealed since this
+   bar stays on screen far longer than a one-time scroll reveal warrants */
+.trust-stats .gauge-badge{position:relative;display:flex;align-items:center;justify-content:center;align-self:flex-start;
+  width:60px;height:60px;border-radius:50%;flex:none;margin-bottom:10px;padding:4px;
+  background:conic-gradient(from -40deg,#e3e9fb,#8fa1e0 22%,#33417f 50%,#8fa1e0 78%,#e3e9fb 100%);
+  box-shadow:0 6px 16px rgba(0,0,0,.32)}
+.trust-stats .gauge-badge::before{content:"";position:absolute;inset:4px;border-radius:50%;z-index:0;
+  background:radial-gradient(circle at 35% 30%,#233369,#0a1338 75%);
+  box-shadow:0 0 14px rgba(157,177,236,.35) inset}
+.trust-stats .gauge-badge .gauge-ic{position:relative;z-index:1;width:36px;height:36px;color:#c3cff7}
+.trust-stats .gauge-badge .gauge-tick{stroke:#7e90d4;stroke-width:1.6}
 @keyframes gaugeIdle{0%,100%{transform:rotate(50deg)}50%{transform:rotate(60deg)}}
 .trust-stats .gauge-in .gauge-needle{animation:gaugeIdle 3.6s ease-in-out 1s infinite}
 @media(prefers-reduced-motion:reduce){.trust-stats .gauge-in .gauge-needle{animation:none}}
-@media(max-width:640px){.trust-stats .gauge-badge{width:34px;height:34px}.trust-stats .gauge-badge .gauge-ic{width:21px;height:21px}}
+@media(max-width:640px){.trust-stats .gauge-badge{width:46px;height:46px}.trust-stats .gauge-badge .gauge-ic{width:28px;height:28px}}
+
+/* slow light sweep drifting across the full bar, like a reflection
+   travelling down a length of pipe */
+.emergency-bar{position:relative;overflow:hidden}
+.emergency-bar::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.09) 45%,rgba(157,177,236,.16) 50%,rgba(255,255,255,.09) 55%,transparent 70%);
+  background-size:260% 100%;background-position:-50% 0;
+  animation:barSweep 6.5s ease-in-out infinite}
+.emergency-bar .wrap{position:relative;z-index:1}
+@keyframes barSweep{0%{background-position:-50% 0}100%{background-position:150% 0}}
+@media(prefers-reduced-motion:reduce){.emergency-bar::before{animation:none}}
 
 /* ---------- emergency callout bar ---------- */
 .emergency-bar{background:linear-gradient(90deg,var(--navy-700),var(--navy-600));position:relative;z-index:2}

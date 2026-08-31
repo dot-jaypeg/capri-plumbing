@@ -83,11 +83,16 @@ if (parallaxEls.length && !matchMedia('(prefers-reduced-motion: reduce)').matche
 // Injected rather than hand-authored so every trust stat / price amount
 // on every page gets one automatically.
 (function () {
-  const GAUGE_SVG = '<svg class="gauge-ic" viewBox="0 0 36 36" aria-hidden="true">' +
+  const GAUGE_SVG = '<span class="gauge-badge"><svg class="gauge-ic" viewBox="0 0 36 36" aria-hidden="true">' +
     '<circle class="gauge-ring" cx="18" cy="18" r="15"/>' +
+    '<line class="gauge-tick" x1="18" y1="4" x2="18" y2="7.5" transform="rotate(-95 18 18)"/>' +
+    '<line class="gauge-tick" x1="18" y1="4" x2="18" y2="7.5" transform="rotate(-58 18 18)"/>' +
+    '<line class="gauge-tick" x1="18" y1="4" x2="18" y2="7.5" transform="rotate(-21 18 18)"/>' +
+    '<line class="gauge-tick" x1="18" y1="4" x2="18" y2="7.5" transform="rotate(16 18 18)"/>' +
+    '<line class="gauge-tick" x1="18" y1="4" x2="18" y2="7.5" transform="rotate(53 18 18)"/>' +
     '<line class="gauge-needle" x1="18" y1="18" x2="18" y2="7"/>' +
     '<circle class="gauge-hub" cx="18" cy="18" r="2.5"/>' +
-    '</svg>';
+    '</svg></span>';
   const targets = document.querySelectorAll('.trust-stats .t, .subhero-stats .t, .price-card .p-amount');
   if (!targets.length) return;
   targets.forEach(el => el.insertAdjacentHTML('afterbegin', GAUGE_SVG));
