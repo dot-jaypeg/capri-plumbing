@@ -351,7 +351,7 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 }
 
 /* ---------- comparison ---------- */
-.compare{background:var(--navy-950);color:#fff}
+.compare{background:var(--navy-950);color:#fff;position:relative;overflow:hidden}
 .compare .section-head.center .lead{color:#b7c0e2}
 .compare .eyebrow{color:#9db1ec}
 .compare .eyebrow::before,.compare .eyebrow::after{background:#9db1ec}
@@ -416,7 +416,7 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 @media(max-width:760px){.promise-grid{grid-template-columns:1fr}}
 
 /* ---------- social / video showcase ---------- */
-.social{background:var(--navy-950);color:#fff}
+.social{background:var(--navy-950);color:#fff;position:relative;overflow:hidden}
 .social .eyebrow{color:#9db1ec}
 .social .eyebrow::before,.social .eyebrow::after{background:#9db1ec}
 .social .lead{color:#b7c0e2}
@@ -698,3 +698,60 @@ footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px}
 .mobile-menu,.mm-backdrop{display:none}
 @media(max-width:1120px){.mobile-menu,.mm-backdrop{display:flex}.mm-backdrop{display:block}}
 body.mm-open{overflow:hidden}
+
+/* ============================================================
+   MOTION -- flowing pipe dividers, ambient bubbles, podcast player
+   ============================================================ */
+
+/* --- flowing pipe/water divider between sections --- */
+.flow-divider{width:100%;height:56px;overflow:hidden;line-height:0;background:inherit}
+.flow-divider svg{width:100%;height:100%;display:block}
+.flow-divider .flow-path{fill:none;stroke:var(--steel);stroke-width:3;stroke-linecap:round;
+  stroke-dasharray:16 16;animation:flowMove 2.4s linear infinite;opacity:.55}
+.flow-divider.on-dark .flow-path{stroke:#9db1ec;opacity:.7}
+@keyframes flowMove{to{stroke-dashoffset:-64}}
+@media(prefers-reduced-motion:reduce){.flow-divider .flow-path{animation:none}}
+
+/* --- ambient rising bubbles for dark/navy sections --- */
+.bubble-field{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.bubble-field .bubble{position:absolute;bottom:-10%;left:var(--x,50%);width:var(--s,10px);height:var(--s,10px);
+  border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.6),rgba(255,255,255,.06) 72%);
+  animation:bubbleRise var(--dur,12s) linear infinite;animation-delay:var(--delay,0s)}
+@keyframes bubbleRise{
+  0%{transform:translate(0,0);opacity:0}
+  8%{opacity:.6}
+  85%{opacity:.3}
+  100%{transform:translate(var(--drift,18px),-128%);opacity:0}
+}
+@media(prefers-reduced-motion:reduce){.bubble-field{display:none}}
+/* make sure real content always stacks above the bubble field, even where
+   .wrap previously had no (or an equal) z-index of its own */
+.hero .wrap,.subhero .wrap,.cta-band .wrap,.oc-band .wrap,.finance .wrap,.compare .wrap,.social .wrap{
+  position:relative;z-index:2}
+
+/* --- podcast / featured video player --- */
+.podcast-player{position:relative;max-width:920px;margin:56px auto 0;border-radius:var(--radius-xl);
+  overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:16/9;background:#000}
+.podcast-player video{width:100%;height:100%;object-fit:cover;display:block}
+.podcast-player .pp-badge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;
+  display:flex;align-items:center;gap:12px;background:rgba(11,20,65,.55);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:16px 26px;color:#fff;
+  font-family:var(--head);font-weight:700;font-size:15px;pointer-events:none;
+  transition:opacity .3s ease,transform .3s ease}
+.podcast-player .pp-badge i{width:44px;height:44px;border-radius:50%;background:#fff;color:var(--navy-900);
+  display:grid;place-items:center;font-size:16px}
+.podcast-player.is-playing .pp-badge{opacity:0;transform:translate(-50%,-50%) scale(.9)}
+
+/* --- price-card droplet drip on hover --- */
+.price-card{position:relative;overflow:visible}
+.price-card .price-drip{position:absolute;top:-6px;right:26px;color:var(--steel);font-size:15px;
+  opacity:0;transform:translateY(-6px);transition:opacity .3s ease}
+.price-card:hover .price-drip{opacity:1;animation:dripFall 1.1s ease-in infinite}
+@keyframes dripFall{0%{transform:translateY(-6px);opacity:0}20%{opacity:1}100%{transform:translateY(18px);opacity:0}}
+
+/* --- gentle continuous motion on the process-flow connector arrows ---
+   (the parent .process-arrow handles the 90deg rotation at mobile widths,
+   so this child animation stays rotation-free to avoid compounding it) */
+.process-arrow i{display:inline-block;animation:arrowNudge 1.6s ease-in-out infinite}
+@keyframes arrowNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+@media(prefers-reduced-motion:reduce){.process-arrow i,.price-card:hover .price-drip{animation:none}}
