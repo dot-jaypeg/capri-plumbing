@@ -690,9 +690,7 @@ footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px;position:rel
 .spec p{color:var(--muted);font-size:14.5px;margin-top:10px}
 @media(max-width:860px){.specs{grid-template-columns:1fr}}
 
-.cta-band{position:relative;background:var(--navy-950);color:#fff;text-align:center;padding:92px 0;
-  clip-path:polygon(0 3.5vw,100% 0,100% 100%,0 100%)}
-@media(max-width:640px){.cta-band{clip-path:none}}
+.cta-band{position:relative;background:var(--navy-950);color:#fff;text-align:center;padding:92px 0}
 .cta-band .eyebrow{color:#9db1ec;justify-content:center}
 .cta-band .eyebrow::before,.cta-band .eyebrow::after{background:#9db1ec}
 .cta-band h2{font-size:clamp(30px,4vw,50px);margin-top:16px;color:#fff}
@@ -851,6 +849,15 @@ body.mm-open{overflow:hidden}
 .hero::before{background-image:
   linear-gradient(rgba(157,177,236,.045) 1px,transparent 1px),
   linear-gradient(90deg,rgba(157,177,236,.045) 1px,transparent 1px)}
+
+/* ---------- angled top edge on every navy section sitewide, replacing the
+   flat rectangle break wherever a dark band starts -- one shared angle so
+   the site reads as a consistent system rather than a one-off effect on a
+   single component ---------- */
+.hero,.subhero,.emergency-bar,.compare,.social,footer,.cta-band{
+  clip-path:polygon(0 2.2vw,100% 0,100% 100%,0 100%)}
+@media(max-width:640px){
+  .hero,.subhero,.emergency-bar,.compare,.social,footer,.cta-band{clip-path:none}}
 
 /* ---------- marquee ticker: an infinite-scroll strip of brand claims in
    the light-blue brand accent, breaking up the page's navy rhythm with a
