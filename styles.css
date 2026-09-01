@@ -47,6 +47,8 @@
   --head:"Suisse Intl",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --blueprint:linear-gradient(rgba(157,177,236,.09) 1px,transparent 1px),
               linear-gradient(90deg,rgba(157,177,236,.09) 1px,transparent 1px);
+  --halftone:radial-gradient(rgba(157,177,236,.16) 1.3px,transparent 1.6px);
+  --navy-grad:linear-gradient(115deg,var(--navy-800) 0%,var(--navy-950) 55%,var(--navy-900) 100%);
   --body:"Gravity","Suisse Intl",-apple-system,sans-serif;
 }
 
@@ -99,7 +101,7 @@ footer h2,footer h3,footer h4,
   transition:transform .3s var(--ease),background .3s,box-shadow .3s,color .3s;white-space:nowrap;
 }
 .btn i{font-size:17px;flex:none}
-.btn-primary{background:var(--navy-900);color:#fff;box-shadow:0 14px 30px rgba(11,20,65,.28)}
+.btn-primary{background:var(--navy-900);color:#fff;box-shadow:0 14px 30px rgba(11,20,65,.28),0 0 22px rgba(157,177,236,.35)}
 .btn-primary:hover{background:var(--navy-700);transform:translateY(-2px)}
 .btn-dark{background:var(--navy-900);color:#fff}
 .btn-dark:hover{background:var(--navy-700);transform:translateY(-2px)}
@@ -107,7 +109,7 @@ footer h2,footer h3,footer h4,
 .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.1)}
 .btn-outline{border-color:var(--navy-900);color:var(--navy-900)}
 .btn-outline:hover{background:var(--navy-900);color:#fff}
-.btn-accent{background:#9db1ec;color:var(--navy-950);box-shadow:0 14px 30px rgba(157,177,236,.28)}
+.btn-accent{background:#9db1ec;color:var(--navy-950);box-shadow:0 14px 30px rgba(157,177,236,.28),0 0 22px rgba(157,177,236,.45)}
 .btn-accent:hover{background:#b7c5f2;transform:translateY(-2px)}
 .btn-lg{padding:18px 34px;font-size:16px}
 
@@ -169,8 +171,11 @@ body:has(.hero) header.nav.nav-transparent .logo{opacity:0;pointer-events:none}
 header.nav.nav-transparent nav>ul>li>a{color:#fff}
 header.nav.nav-transparent nav>ul>li>a::after{background:#fff}
 header.nav.nav-transparent .nav-toggle span{background:#fff}
-header.nav.nav-transparent .btn-primary{background:#fff;color:var(--navy-900)}
-header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
+/* solid white read fine against a dark hero but washed out against
+   lighter patches of hero video -- the brand accent keeps reliable
+   contrast against both dark navy and bright video content */
+header.nav.nav-transparent .btn-primary{background:#9db1ec;color:var(--navy-950);box-shadow:none}
+header.nav.nav-transparent .btn-primary:hover{background:#fff}
 .nav-toggle{display:none;background:none;border:0;cursor:pointer;flex-direction:column;gap:5px}
 .nav-toggle span{width:26px;height:2px;border-radius:2px;background:var(--navy-900);display:block;transition:.3s}
 @media(max-width:1120px){
@@ -187,8 +192,9 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
   background:linear-gradient(105deg,rgba(6,11,30,.92) 0%,rgba(6,11,30,.72) 42%,rgba(6,11,30,.38) 100%);}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;z-index:1;pointer-events:none;
   background:linear-gradient(180deg,transparent,var(--navy-950) 92%)}
-.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:60px;
-  align-items:center;padding-top:130px;padding-bottom:90px;min-height:calc(100vh - 42px)}
+.hero .wrap{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;
+  padding-top:130px;padding-bottom:90px;min-height:calc(100vh - 42px)}
+.hero-copy{max-width:640px}
 @media(prefers-reduced-motion:reduce){.hero-bg{transform:none!important}}
 .hero-copy .eyebrow{color:#cfd8f6}
 .hero-copy .eyebrow::before{background:#cfd8f6}
@@ -197,9 +203,9 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
   border:1px solid rgba(255,255,255,.24);padding:8px 16px;border-radius:100px;
   font-size:13px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:#fff;
   margin-bottom:22px}
-.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex:none;
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:#9db1ec;flex:none;
   animation:pulseDot 1.8s ease-in-out infinite}
-@keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(201,162,78,.65)}70%{box-shadow:0 0 0 9px rgba(201,162,78,0)}}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(157,177,236,.65)}70%{box-shadow:0 0 0 9px rgba(157,177,236,0)}}
 @media(prefers-reduced-motion:reduce){.hero-badge .dot{animation:none}}
 .hero h1{font-size:clamp(38px,5.2vw,70px);font-weight:700;margin:0;letter-spacing:-.02em;color:#fff}
 .hero h1 em{font-style:normal;color:#9db1ec}
@@ -284,24 +290,8 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 .emergency-toast .et-call i{font-size:15px;color:var(--navy-950);flex-shrink:0}
 @media(max-width:760px){.emergency-toast{display:none}}
 
-/* hero lead form card */
-.leadcard{background:#fff;color:var(--ink);border-radius:var(--radius-lg);padding:34px 32px;
-  box-shadow:var(--shadow-lg);position:relative}
-.leadcard .lc-tag{position:absolute;top:-14px;right:26px;background:var(--navy-900);color:#fff;
-  font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border-radius:100px}
-.leadcard h3{font-size:25px;margin-bottom:6px}
-.leadcard .lc-sub{font-size:14.5px;color:var(--muted);margin-bottom:22px}
-.leadcard form{display:grid;gap:13px}
-.leadcard .row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.leadcard input,.leadcard select,.leadcard textarea{
-  width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:var(--radius);
-  font-family:var(--body);font-size:15px;background:var(--bone);transition:border .2s,background .2s;color:var(--ink)}
-.leadcard input:focus,.leadcard select:focus,.leadcard textarea:focus{outline:none;border-color:var(--navy-900);background:#fff}
-.leadcard button{margin-top:4px;width:100%}
-.leadcard .lc-fine{font-size:11.5px;color:var(--muted-2);text-align:center;margin-top:4px}
-.leadcard .lc-fine i{font-size:12px;color:var(--navy-900);vertical-align:-1px;margin-right:3px}
 @media(max-width:940px){
-  .hero .wrap{grid-template-columns:1fr;gap:40px;padding-top:160px;padding-bottom:60px;min-height:0}
+  .hero .wrap{padding-top:160px;padding-bottom:60px;min-height:0}
 }
 
 /* ---------- offer strip ---------- */
@@ -407,7 +397,7 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 }
 
 /* ---------- comparison ---------- */
-.compare{background:var(--navy-950);color:#fff;position:relative;overflow:hidden}
+.compare{background:var(--navy-grad);color:#fff;position:relative;overflow:hidden}
 .compare .section-head.center .lead{color:#b7c0e2}
 .compare .eyebrow{color:#9db1ec}
 .compare .eyebrow::before,.compare .eyebrow::after{background:#9db1ec}
@@ -480,7 +470,7 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 @media(max-width:760px){.promise-grid{grid-template-columns:1fr}}
 
 /* ---------- social / video showcase ---------- */
-.social{background:var(--navy-950);color:#fff;position:relative;overflow:hidden}
+.social{background:var(--navy-grad);color:#fff;position:relative;overflow:hidden}
 .social .eyebrow{color:#9db1ec}
 .social .eyebrow::before,.social .eyebrow::after{background:#9db1ec}
 .social .lead{color:#b7c0e2}
@@ -522,7 +512,7 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 @media(max-width:900px){.rv-grid{grid-template-columns:1fr}}
 
 /* ---------- membership band (replaces financing) ---------- */
-.finance{position:relative;color:#fff;background-color:var(--navy-900);overflow:hidden}
+.finance{position:relative;color:#fff;background:var(--navy-grad);overflow:hidden}
 .finance .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:50px;align-items:center;padding:80px 28px;position:relative;z-index:1}
 .finance h2{font-size:clamp(28px,3.4vw,44px);color:#fff}
 .finance p{color:#c7cee6;font-size:17px;margin-top:18px;max-width:520px}
@@ -690,7 +680,7 @@ footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px;position:rel
 .spec p{color:var(--muted);font-size:14.5px;margin-top:10px}
 @media(max-width:860px){.specs{grid-template-columns:1fr}}
 
-.cta-band{position:relative;background:var(--navy-950);color:#fff;text-align:center;padding:92px 0}
+.cta-band{position:relative;background:var(--navy-grad);color:#fff;text-align:center;padding:92px 0}
 .cta-band .eyebrow{color:#9db1ec;justify-content:center}
 .cta-band .eyebrow::before,.cta-band .eyebrow::after{background:#9db1ec}
 .cta-band h2{font-size:clamp(30px,4vw,50px);margin-top:16px;color:#fff}
@@ -829,21 +819,29 @@ body.mm-open{overflow:hidden}
 
 @media(prefers-reduced-motion:reduce){.price-card:hover .price-drip{animation:none}}
 
-/* ---------- blueprint schematic grid: a faint technical grid behind every
-   dark navy section sitewide, fading out toward the edges so it reads as
-   texture rather than a hard-edged pattern ---------- */
-.hero::before,.subhero::before,.cta-band::before,
-.emergency-bar::after,.compare::before,.social::before,footer::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
+/* ---------- blueprint schematic grid: reserved for the site's actual hero
+   moments (hero/subhero) so it reads as a specific "this is the top of the
+   page" motif rather than wallpaper repeated on every dark section ---- */
+.hero::before,.subhero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
   background-image:var(--blueprint);background-size:50px 50px;
   mask-image:radial-gradient(120% 90% at 50% 0%,#000 40%,transparent 100%);
   -webkit-mask-image:radial-gradient(120% 90% at 50% 0%,#000 40%,transparent 100%)}
-.hero::before,.subhero::before{z-index:1}
+
+/* ---------- halftone dot texture: every OTHER navy section sitewide gets
+   this instead, so the grid stays a hero-only signature while the rest of
+   the dark bands still read as textured, not flat ---------- */
+.cta-band::before,.emergency-bar::after,.compare::before,.social::before,
+footer::before,.finance::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:var(--halftone);background-size:14px 14px;
+  mask-image:radial-gradient(120% 90% at 50% 0%,#000 40%,transparent 100%);
+  -webkit-mask-image:radial-gradient(120% 90% at 50% 0%,#000 40%,transparent 100%)}
 .cta-band::before{z-index:0}
 .cta-band .wrap{position:relative;z-index:1}
 .emergency-bar::after{z-index:0}
-.compare::before,.social::before,footer::before{z-index:0}
-.compare .wrap,.social .wrap,footer .wrap{position:relative;z-index:1}
+.compare::before,.social::before,footer::before,.finance::before{z-index:0}
+.compare .wrap,.social .wrap,footer .wrap,.finance .wrap{position:relative;z-index:1}
 
 /* ---------- angled top edge on navy sections that have real content
    sitting behind them to reveal -- clip-path only removes pixels from the
@@ -862,6 +860,12 @@ body.mm-open{overflow:hidden}
   margin-top:-36px}
 @media(max-width:640px){
   .compare,.social,footer,.cta-band{clip-path:none;margin-top:0}}
+/* .finance sits right after the .pipe-divider on Specials -- that divider
+   is only ~60px tall with its pipe bar centered in it, so the standard
+   36px overlap would slide up far enough to clip the pipe itself. A
+   smaller overlap stays within the divider's bottom padding instead. */
+.finance{clip-path:polygon(0 18px,100% 0,100% 100%,0 100%);margin-top:-18px}
+@media(max-width:640px){.finance{clip-path:none;margin-top:0}}
 
 /* ---------- marquee ticker: an infinite-scroll strip of brand claims in
    the light-blue brand accent, breaking up the page's navy rhythm with a
