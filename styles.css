@@ -193,6 +193,14 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 .hero-copy .eyebrow{color:#cfd8f6}
 .hero-copy .eyebrow::before{background:#cfd8f6}
 .hero-logo{height:clamp(40px,4.4vw,56px);width:auto;margin-bottom:24px;filter:brightness(0) invert(1);opacity:.96}
+.hero-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.24);padding:8px 16px;border-radius:100px;
+  font-size:13px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:#fff;
+  margin-bottom:22px}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex:none;
+  animation:pulseDot 1.8s ease-in-out infinite}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(201,162,78,.65)}70%{box-shadow:0 0 0 9px rgba(201,162,78,0)}}
+@media(prefers-reduced-motion:reduce){.hero-badge .dot{animation:none}}
 .hero h1{font-size:clamp(38px,5.2vw,70px);font-weight:700;margin:0;letter-spacing:-.02em;color:#fff}
 .hero h1 em{font-style:normal;color:#9db1ec}
 .hero p.sub{font-size:19px;color:#d3d8ec;max-width:520px;margin-top:22px}
@@ -597,7 +605,7 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 @media(max-width:860px){.finalcta .wrap,.wrap.finalcta{grid-template-columns:1fr;gap:44px}}
 
 /* ---------- footer ---------- */
-footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px}
+footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px;position:relative;overflow:hidden}
 .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:44px}
 .foot-brand img{height:64px;margin-bottom:20px}
 .foot-brand p{font-size:14.5px;color:#8f97b8;max-width:280px}
@@ -682,7 +690,9 @@ footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px}
 .spec p{color:var(--muted);font-size:14.5px;margin-top:10px}
 @media(max-width:860px){.specs{grid-template-columns:1fr}}
 
-.cta-band{position:relative;background:var(--navy-950);color:#fff;text-align:center;padding:92px 0}
+.cta-band{position:relative;background:var(--navy-950);color:#fff;text-align:center;padding:92px 0;
+  clip-path:polygon(0 3.5vw,100% 0,100% 100%,0 100%)}
+@media(max-width:640px){.cta-band{clip-path:none}}
 .cta-band .eyebrow{color:#9db1ec;justify-content:center}
 .cta-band .eyebrow::before,.cta-band .eyebrow::after{background:#9db1ec}
 .cta-band h2{font-size:clamp(30px,4vw,50px);margin-top:16px;color:#fff}
@@ -821,26 +831,26 @@ body.mm-open{overflow:hidden}
 
 @media(prefers-reduced-motion:reduce){.price-card:hover .price-drip{animation:none}}
 
-/* ---------- blueprint schematic grid: a faint technical grid behind the
-   site's dark navy sections, fading out toward the edges so it reads as
+/* ---------- blueprint schematic grid: a faint technical grid behind every
+   dark navy section sitewide, fading out toward the edges so it reads as
    texture rather than a hard-edged pattern ---------- */
-.hero::before,.subhero::before,.cta-band::before{content:"";position:absolute;inset:0;pointer-events:none;
+.hero::before,.subhero::before,.cta-band::before,
+.emergency-bar::after,.compare::before,.social::before,footer::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
   background-image:var(--blueprint);background-size:50px 50px;
   mask-image:radial-gradient(120% 90% at 50% 0%,#000 40%,transparent 100%);
   -webkit-mask-image:radial-gradient(120% 90% at 50% 0%,#000 40%,transparent 100%)}
 .hero::before,.subhero::before{z-index:1}
 .cta-band::before{z-index:0}
 .cta-band .wrap{position:relative;z-index:1}
-
-/* ---------- oversized watermark icon: a huge, near-invisible brand icon
-   parked in the hero corner with a slow idle drift, for scale/presence
-   without adding clutter ---------- */
-.hero-watermark{position:absolute;z-index:1;right:-3%;bottom:-10%;
-  font-size:min(32vw,440px);color:rgba(157,177,236,.09);pointer-events:none;
-  animation:watermarkDrift 9s ease-in-out infinite}
-@keyframes watermarkDrift{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-16px) rotate(-3deg)}}
-@media(prefers-reduced-motion:reduce){.hero-watermark{animation:none}}
-@media(max-width:900px){.hero-watermark{display:none}}
+.emergency-bar::after{z-index:0}
+.compare::before,.social::before,footer::before{z-index:0}
+.compare .wrap,.social .wrap,footer .wrap{position:relative;z-index:1}
+/* dialed back specifically on the hero -- it already carries a photo/video
+   background, so the grid only needs to be a whisper there */
+.hero::before{background-image:
+  linear-gradient(rgba(157,177,236,.045) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(157,177,236,.045) 1px,transparent 1px)}
 
 /* ---------- marquee ticker: an infinite-scroll strip of brand claims in
    the light-blue brand accent, breaking up the page's navy rhythm with a
