@@ -81,7 +81,7 @@ h1,h2,h3,h4{font-family:var(--head);font-weight:700;line-height:1.06;letter-spac
 .cta-band h2,.cta-band h3,
 .how.navy h2,.how.navy h3,
 .social h2,.social h3,
-.area.navy h2,.area.navy h3,
+.oc-band h2,.oc-band h3,
 footer h2,footer h3,footer h4,
 .mobile-menu h2,.mobile-menu h3{color:#fff}
 
@@ -471,6 +471,20 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .finance .fin-note{font-size:12px;color:var(--accent-lt);margin-top:14px}
 @media(max-width:860px){.finance .wrap{grid-template-columns:1fr;gap:34px}}
 
+/* ---------- cinematic OC video band ---------- */
+.oc-band{position:relative;height:78vh;min-height:520px;overflow:hidden;color:#fff}
+.oc-band video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.oc-band::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(3,15,43,.2) 0%,rgba(3,15,43,.5) 62%,rgba(3,15,43,.94) 100%)}
+.oc-band .wrap{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:64px}
+.oc-band .eyebrow{color:var(--accent-lt)}
+.oc-band .eyebrow::before{background:var(--blue)}
+.oc-band h2{color:#fff;font-size:clamp(30px,4.4vw,54px);margin-top:16px;max-width:16ch}
+.oc-band .cities{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.oc-band .cities span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);color:#fff;
+  border-radius:100px;padding:8px 16px;font-size:13.5px;font-weight:500}
+@media(max-width:760px){.oc-band{height:64vh}}
+
 /* ---------- area + faq ---------- */
 .area .wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
 .area-map{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
@@ -478,14 +492,6 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .area .cities{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
 .area .cities span{background:#fff;border:1px solid var(--line);border-radius:100px;
   padding:8px 16px;font-size:13.5px;font-weight:500;color:var(--accent)}
-/* map-only variant (no FAQ column): single centered block instead of the 2-col grid */
-.area.solo .wrap{display:block;max-width:900px}
-.area.solo .area-map iframe{height:400px}
-/* navy variant */
-.area.navy{background:var(--navy)}
-.area.navy .eyebrow{color:var(--accent-lt)}
-.area.navy .area-map{border-color:rgba(255,255,255,.16)}
-.area.navy .cities span{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.24);color:#fff}
 .faq-item{border-bottom:1px solid var(--line)}
 .faq-q{width:100%;background:none;border:0;text-align:left;cursor:pointer;padding:22px 40px 22px 0;
   font-family:var(--head);font-size:18px;font-weight:600;color:var(--navy);position:relative;display:block;
