@@ -276,32 +276,38 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 @media(max-width:900px){.story .wrap{grid-template-columns:1fr;gap:64px}.story-media .m-badge{left:0}}
 
 /* ---------- story carousel (merges the intro story + "who we help" cards
-   into one rotating panel, Nuve-style) ---------- */
-.story.carousel .wrap{position:relative}
-.car-media{position:relative}
-.car-media .m-main{position:relative;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);
-  aspect-ratio:4/5;background:var(--offwhite)}
-.car-media .m-main .car-slide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .4s ease}
-.car-media .m-main .car-slide.active{opacity:1;pointer-events:auto}
-.car-media .m-main img.car-slide{width:100%;height:100%;object-fit:cover}
-.car-media .m-main .car-icon{display:flex;align-items:center;justify-content:center}
-.car-media .m-main .car-icon i{font-size:min(30vw,120px);color:var(--navy)}
-.car-body{position:relative;min-height:320px}
-.car-body .car-slide{display:none}
+   into one rotating card, Nuve-style: one unified panel with text on one
+   side and media on the other, arrows floating just outside it) ---------- */
+.story.carousel .wrap{display:block;position:relative}
+.car-card{background:var(--offwhite);border-radius:var(--radius-lg);overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:520px}
+.car-body{position:relative;display:flex;align-items:center;padding:64px}
+.car-body .car-slide{display:none;width:100%}
 .car-body .car-slide.active{display:block}
 .car-body h2{margin-top:0}
-.car-arrow{position:absolute;top:calc(50% - 22px);width:44px;height:44px;border-radius:50%;background:#fff;
-  border:1px solid var(--line);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:center;
-  color:var(--navy);cursor:pointer;transition:background .2s,box-shadow .2s;z-index:3}
+.car-media{position:relative}
+.car-media .car-slide{position:absolute;inset:0;opacity:0;transition:opacity .4s ease}
+.car-media .car-slide.active{opacity:1}
+.car-media img.car-slide{width:100%;height:100%;object-fit:cover;display:block}
+.car-media .car-icon{display:flex;align-items:center;justify-content:center;background:var(--navy)}
+.car-media .car-icon i{font-size:min(16vw,100px);color:var(--blue)}
+.car-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;
+  background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);display:flex;align-items:center;
+  justify-content:center;color:var(--navy);cursor:pointer;transition:background .2s,box-shadow .2s;z-index:3}
 .car-arrow:hover{background:var(--offwhite);box-shadow:var(--shadow)}
-.car-arrow.prev{left:-22px}
-.car-arrow.next{right:-22px}
-.car-dots{display:flex;gap:8px;justify-content:center;margin-top:36px;grid-column:1/-1}
+.car-arrow.prev{left:-10px}
+.car-arrow.next{right:-10px}
+.car-dots{display:flex;gap:8px;justify-content:center;margin-top:28px}
 .car-dots .dot{width:9px;height:9px;border-radius:50%;background:var(--line);border:0;padding:0;cursor:pointer;
   transition:background .2s,transform .2s}
 .car-dots .dot.active{background:var(--navy);transform:scale(1.25)}
-@media(max-width:1120px){.car-arrow.prev{left:4px}.car-arrow.next{right:4px}}
-@media(max-width:900px){.car-arrow{display:none}}
+@media(max-width:900px){
+  .car-card{grid-template-columns:1fr;min-height:0}
+  .car-media{order:-1;aspect-ratio:4/3}
+  .car-body{padding:40px 32px}
+  .car-arrow{display:none}
+}
+@media(max-width:520px){.car-body{padding:32px 24px}}
 
 /* ---------- services — hover-expand accordion ---------- */
 .prod-stack{display:flex;gap:4px;height:clamp(520px,74vh,780px);overflow:hidden;
