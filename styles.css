@@ -590,7 +590,8 @@ header.nav.nav-transparent .btn-primary:hover{background:#fff}
 .finalcta .fc-row b{font-size:15px;display:block}
 .finalcta .fc-row span{font-size:14.5px;color:var(--muted)}
 .finalcta .fc-row a{font-weight:600}
-.fc-card{background:#fff;border-radius:var(--radius-lg);padding:40px 38px;box-shadow:var(--shadow)}
+.fc-card{background:#fff;border-radius:var(--radius-lg);padding:52px 48px;box-shadow:var(--shadow)}
+@media(max-width:520px){.fc-card{padding:34px 26px}}
 .fc-card h3{font-size:25px;margin-bottom:6px}
 .fc-card .fc-sub{color:var(--muted);font-size:14.5px;margin-bottom:24px}
 .fc-card form{display:grid;gap:14px}
