@@ -850,14 +850,23 @@ body.mm-open{overflow:hidden}
   linear-gradient(rgba(157,177,236,.045) 1px,transparent 1px),
   linear-gradient(90deg,rgba(157,177,236,.045) 1px,transparent 1px)}
 
-/* ---------- angled top edge on every navy section sitewide, replacing the
-   flat rectangle break wherever a dark band starts -- one shared angle so
-   the site reads as a consistent system rather than a one-off effect on a
-   single component ---------- */
-.hero,.subhero,.emergency-bar,.compare,.social,footer,.cta-band{
-  clip-path:polygon(0 2.2vw,100% 0,100% 100%,0 100%)}
+/* ---------- angled top edge on navy sections that have real content
+   sitting behind them to reveal -- clip-path only removes pixels from the
+   section's OWN box, so without a matching negative margin pulling it up
+   to overlap whatever comes before it, the cut exposes bare white body
+   background instead of a clean color transition. Applied only where a
+   generously-padded section precedes it (compare/social/footer/cta-band
+   all sit after sections with 90px+ bottom padding, so a 36px overlap
+   never eats into real content). Deliberately NOT applied to .hero/.subhero
+   (nothing precedes them in normal flow -- there's no content to reveal)
+   or .emergency-bar (it sits directly under the much shorter marquee,
+   which has no room to safely overlap without clipping its own text) --
+   trying to force those was exactly what produced the white-triangle bug */
+.compare,.social,footer,.cta-band{
+  clip-path:polygon(0 36px,100% 0,100% 100%,0 100%);
+  margin-top:-36px}
 @media(max-width:640px){
-  .hero,.subhero,.emergency-bar,.compare,.social,footer,.cta-band{clip-path:none}}
+  .compare,.social,footer,.cta-band{clip-path:none;margin-top:0}}
 
 /* ---------- marquee ticker: an infinite-scroll strip of brand claims in
    the light-blue brand accent, breaking up the page's navy rhythm with a
