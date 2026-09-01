@@ -1,3 +1,30 @@
+// preloader: fade out once the page has loaded, fade back in before leaving for another page on this site
+(function () {
+  const TRANSITION_MS = 400;
+  const started = Date.now();
+  const reveal = () => {
+    const wait = Math.max(TRANSITION_MS - (Date.now() - started), 0);
+    setTimeout(() => document.body.classList.add('loaded'), wait);
+  };
+  if (document.readyState === 'complete') reveal();
+  else addEventListener('load', reveal);
+
+  document.addEventListener('click', (e) => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target.closest('a[href]');
+    if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:')) return;
+    let url;
+    try { url = new URL(href, location.href); } catch { return; }
+    if (url.origin !== location.origin) return;
+    if (url.pathname === location.pathname && url.hash) return;
+    e.preventDefault();
+    document.body.classList.remove('loaded');
+    setTimeout(() => { location.href = url.href; }, TRANSITION_MS);
+  });
+})();
+
 // sticky header: shadow + transparent-over-hero crossfade
 const nav = document.getElementById('nav');
 if (nav) {
