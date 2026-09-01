@@ -188,7 +188,7 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--bone)}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;z-index:1;pointer-events:none;
   background:linear-gradient(180deg,transparent,var(--navy-950) 92%)}
 .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:60px;
-  align-items:center;padding-top:196px;padding-bottom:150px;min-height:calc(100vh - 42px)}
+  align-items:center;padding-top:130px;padding-bottom:90px;min-height:calc(100vh - 42px)}
 @media(prefers-reduced-motion:reduce){.hero-bg{transform:none!important}}
 .hero-copy .eyebrow{color:#cfd8f6}
 .hero-copy .eyebrow::before{background:#cfd8f6}
@@ -844,11 +844,6 @@ body.mm-open{overflow:hidden}
 .emergency-bar::after{z-index:0}
 .compare::before,.social::before,footer::before{z-index:0}
 .compare .wrap,.social .wrap,footer .wrap{position:relative;z-index:1}
-/* dialed back specifically on the hero -- it already carries a photo/video
-   background, so the grid only needs to be a whisper there */
-.hero::before{background-image:
-  linear-gradient(rgba(157,177,236,.045) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(157,177,236,.045) 1px,transparent 1px)}
 
 /* ---------- angled top edge on navy sections that have real content
    sitting behind them to reveal -- clip-path only removes pixels from the
