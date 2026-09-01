@@ -590,6 +590,15 @@ header.nav.nav-transparent .btn-primary:hover{background:#fff}
 .finalcta .fc-row b{font-size:15px;display:block}
 .finalcta .fc-row span{font-size:14.5px;color:var(--muted)}
 .finalcta .fc-row a{font-weight:600}
+.finalcta.navy{background:var(--navy-950);color:#fff}
+.finalcta.navy h2{color:#fff}
+.finalcta.navy .lead{color:#c7cee6}
+.finalcta.navy .fc-row b{color:#fff}
+.finalcta.navy .fc-row span{color:#b7c0e2}
+.finalcta.navy .fc-row a{color:#fff}
+.finalcta.navy .fc-row .ic{background:#fff;border-color:transparent}
+.finalcta.navy .contact-social a{border-color:rgba(255,255,255,.28);color:#fff}
+.finalcta.navy .contact-social a:hover{background:rgba(255,255,255,.12);border-color:#fff}
 .fc-card{background:#fff;border-radius:var(--radius-lg);padding:52px 48px;box-shadow:var(--shadow)}
 @media(max-width:520px){.fc-card{padding:34px 26px}}
 .fc-card h3{font-size:25px;margin-bottom:6px}
@@ -637,6 +646,11 @@ footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px;position:rel
 .subhero-bg img,.subhero-bg video{width:100%;height:100%;object-fit:cover;opacity:.6}
 .subhero-bg::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(6,11,30,.55) 0%,rgba(6,11,30,.4) 45%,rgba(6,11,30,.85) 100%)}
+/* fades the hero image all the way to a flat navy that matches the section
+   below, so pages that follow the subhero with a navy block (e.g. contact's
+   .finalcta.navy) have no visible seam */
+.subhero.navy-fade .subhero-bg::after{
+  background:linear-gradient(180deg,rgba(6,11,30,.25) 0%,rgba(6,11,30,.5) 35%,var(--navy-950) 75%,var(--navy-950) 100%)}
 .subhero .wrap{position:relative;z-index:2}
 /* lets a page shift its hero copy to whichever side of the background
    media should stay visually clear -- used on About so the text sits
