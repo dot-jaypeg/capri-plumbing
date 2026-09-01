@@ -103,11 +103,11 @@ footer h2,footer h3,footer h4,
 .btn i{font-size:17px;flex:none}
 .btn-primary{background:var(--navy-900);color:#fff;box-shadow:0 14px 30px rgba(11,20,65,.28),0 0 22px rgba(157,177,236,.35)}
 .btn-primary:hover{background:var(--navy-700);transform:translateY(-2px)}
-.btn-dark{background:var(--navy-900);color:#fff}
+.btn-dark{background:var(--navy-900);color:#fff;box-shadow:0 14px 30px rgba(11,20,65,.28),0 0 22px rgba(157,177,236,.35)}
 .btn-dark:hover{background:var(--navy-700);transform:translateY(-2px)}
-.btn-ghost{border-color:rgba(255,255,255,.4);color:#fff}
+.btn-ghost{border-color:rgba(255,255,255,.4);color:#fff;box-shadow:0 0 16px rgba(255,255,255,.14)}
 .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.1)}
-.btn-outline{border-color:var(--navy-900);color:var(--navy-900)}
+.btn-outline{border-color:var(--navy-900);color:var(--navy-900);box-shadow:0 0 16px rgba(157,177,236,.22)}
 .btn-outline:hover{background:var(--navy-900);color:#fff}
 .btn-accent{background:#9db1ec;color:var(--navy-950);box-shadow:0 14px 30px rgba(157,177,236,.28),0 0 22px rgba(157,177,236,.45)}
 .btn-accent:hover{background:#b7c5f2;transform:translateY(-2px)}
@@ -211,6 +211,13 @@ header.nav.nav-transparent .btn-primary:hover{background:#fff}
 .hero h1 em{font-style:normal;color:#9db1ec}
 .hero p.sub{font-size:19px;color:#d3d8ec;max-width:520px;margin-top:22px}
 .hero .hero-actions{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap}
+/* a navy-fill/white-text .btn-primary reads fine on a light page, but on
+   the hero/subhero's own dark navy backdrop it has almost no contrast --
+   just a floating white word with no visible pill. Inverted to a light
+   fill + navy text here specifically, same accent color used for the nav's
+   Schedule Service button so the two stay visually consistent. */
+.hero .btn-primary,.subhero .btn-primary{background:#9db1ec;color:var(--navy-950)}
+.hero .btn-primary:hover,.subhero .btn-primary:hover{background:#fff}
 .trust-stats{display:flex;gap:64px;flex-wrap:wrap;align-items:flex-start;justify-content:center;flex-shrink:0}
 .trust-stats .t{display:flex;flex-direction:column;line-height:1.18;position:relative;
   transition:transform .3s var(--ease),opacity .7s var(--ease) var(--d,0s)}
@@ -832,7 +839,7 @@ body.mm-open{overflow:hidden}
    this instead, so the grid stays a hero-only signature while the rest of
    the dark bands still read as textured, not flat ---------- */
 .cta-band::before,.emergency-bar::after,.compare::before,.social::before,
-footer::before,.finance::before{
+.finance::before{
   content:"";position:absolute;inset:0;pointer-events:none;
   background-image:var(--halftone);background-size:14px 14px;
   mask-image:radial-gradient(120% 90% at 50% 0%,#000 40%,transparent 100%);
@@ -840,7 +847,7 @@ footer::before,.finance::before{
 .cta-band::before{z-index:0}
 .cta-band .wrap{position:relative;z-index:1}
 .emergency-bar::after{z-index:0}
-.compare::before,.social::before,footer::before,.finance::before{z-index:0}
+.compare::before,.social::before,.finance::before{z-index:0}
 .compare .wrap,.social .wrap,footer .wrap,.finance .wrap{position:relative;z-index:1}
 
 /* ---------- angled top edge on navy sections that have real content
@@ -876,8 +883,8 @@ footer::before,.finance::before{
 .marquee-track{display:flex;width:max-content;animation:marqueeScroll 32s linear infinite}
 .marquee:hover .marquee-track{animation-play-state:paused}
 .marquee-track span{font-family:var(--head);font-weight:700;text-transform:uppercase;
-  font-size:clamp(15px,2vw,22px);letter-spacing:.03em;color:var(--navy-950);
-  padding:16px 0;white-space:nowrap;display:inline-flex;align-items:center}
+  font-size:clamp(12px,1.5vw,17px);letter-spacing:.03em;color:var(--navy-950);
+  padding:14px 0;white-space:nowrap;display:inline-flex;align-items:center}
 .marquee-track span i{font-style:normal;margin:0 24px;color:var(--navy-900);opacity:.5;font-size:.85em}
 @keyframes marqueeScroll{to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
