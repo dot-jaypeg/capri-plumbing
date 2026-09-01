@@ -122,47 +122,51 @@
 </div>
 
 
-<section class="section story" id="story">
+<section class="section story carousel" id="story">
   <div class="wrap">
-    <div class="story-media reveal">
-      <div class="m-main"><img src="assets/images/IMG_6528.jpg" alt="Capri Plumbing technicians on site"></div>
+    <div class="story-media car-media reveal">
+      <div class="m-main">
+        <img class="car-slide active" data-slide="0" src="assets/images/IMG_6528.jpg" alt="Capri Plumbing technicians on site">
+        <div class="car-slide car-icon" data-slide="1"><i class="fa-solid fa-droplet" aria-hidden="true"></i></div>
+        <div class="car-slide car-icon" data-slide="2"><i class="fa-solid fa-faucet-drip" aria-hidden="true"></i></div>
+        <div class="car-slide car-icon" data-slide="3"><i class="fa-solid fa-snowflake" aria-hidden="true"></i></div>
+      </div>
       <div class="m-badge"><b>30 min</b><span>Average arrival time on emergency calls across Orange County.</span></div>
     </div>
-    <div class="story-body reveal">
-      <h2>We show up when<br>it actually matters.</h2>
-      <p class="lead">We provide comprehensive plumbing &amp; HVAC services for Orange County homes of all sizes. Whether it's a stubborn clog, a water heater on its last leg, or a full repipe, our trained technicians handle every job with dedication and professionalism &mdash; because your house is your biggest investment, and we treat it like our own.</p>
-      <ul class="story-list">
-        <li><i class="fa-solid fa-check" aria-hidden="true"></i>24/7 emergency service &mdash; burst pipes and sewer backups don't wait for business hours</li>
-        <li><i class="fa-solid fa-check" aria-hidden="true"></i>Fully equipped trucks ready to solve most issues in a single visit</li>
-        <li><i class="fa-solid fa-check" aria-hidden="true"></i>Upfront, honest pricing before any work begins &mdash; no surprises</li>
-      </ul>
-      <a class="btn btn-dark" href="contact.html">Schedule Your Service</a>
+    <div class="story-body car-body reveal">
+      <div class="car-slide active" data-slide="0">
+        <h2>We show up when<br>it actually matters.</h2>
+        <p class="lead">We provide comprehensive plumbing &amp; HVAC services for Orange County homes of all sizes. Whether it's a stubborn clog, a water heater on its last leg, or a full repipe, our trained technicians handle every job with dedication and professionalism &mdash; because your house is your biggest investment, and we treat it like our own.</p>
+        <ul class="story-list">
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>24/7 emergency service &mdash; burst pipes and sewer backups don't wait for business hours</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Fully equipped trucks ready to solve most issues in a single visit</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Upfront, honest pricing before any work begins &mdash; no surprises</li>
+        </ul>
+        <a class="btn btn-dark" href="contact.html">Schedule Your Service</a>
+      </div>
+      <div class="car-slide" data-slide="1">
+        <span class="eyebrow">Whatever the Job</span>
+        <h2>Emergency Repairs.</h2>
+        <p class="lead">Burst pipe, backed-up sewer, water heater failure &mdash; our trucks are stocked and our techs are on call, day or night.</p>
+      </div>
+      <div class="car-slide" data-slide="2">
+        <span class="eyebrow">Whatever the Job</span>
+        <h2>Planned Upgrades.</h2>
+        <p class="lead">Repiping, water filtration, or a new tankless system &mdash; we plan the project around your home and your schedule.</p>
+      </div>
+      <div class="car-slide" data-slide="3">
+        <span class="eyebrow">Whatever the Job</span>
+        <h2>Seasonal HVAC Care.</h2>
+        <p class="lead">Capri Heating &amp; Air keeps your system tuned up before the OC heat &mdash; or the rare cold snap &mdash; hits.</p>
+      </div>
     </div>
-  </div>
-</section>
-
-<section class="section audience tint">
-  <div class="wrap">
-    <div class="section-head center reveal">
-      <span class="eyebrow center">Whatever the Job</span>
-      <h2>Built for real OC homes.</h2>
-    </div>
-    <div class="aud-grid">
-      <div class="aud-card reveal">
-        <div class="ic"><i class="fa-solid fa-droplet" aria-hidden="true"></i></div>
-        <h3>Emergency Repairs.</h3>
-        <p>Burst pipe, backed-up sewer, water heater failure &mdash; our trucks are stocked and our techs are on call, day or night.</p>
-      </div>
-      <div class="aud-card reveal">
-        <div class="ic"><i class="fa-solid fa-faucet-drip" aria-hidden="true"></i></div>
-        <h3>Planned Upgrades.</h3>
-        <p>Repiping, water filtration, or a new tankless system &mdash; we plan the project around your home and your schedule.</p>
-      </div>
-      <div class="aud-card reveal">
-        <div class="ic"><i class="fa-solid fa-snowflake" aria-hidden="true"></i></div>
-        <h3>Seasonal HVAC Care.</h3>
-        <p>Capri Heating &amp; Air keeps your system tuned up before the OC heat &mdash; or the rare cold snap &mdash; hits.</p>
-      </div>
+    <button class="car-arrow prev" aria-label="Previous slide"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+    <button class="car-arrow next" aria-label="Next slide"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+    <div class="car-dots">
+      <button class="dot active" data-slide="0" aria-label="Slide 1"></button>
+      <button class="dot" data-slide="1" aria-label="Slide 2"></button>
+      <button class="dot" data-slide="2" aria-label="Slide 3"></button>
+      <button class="dot" data-slide="3" aria-label="Slide 4"></button>
     </div>
   </div>
 </section>

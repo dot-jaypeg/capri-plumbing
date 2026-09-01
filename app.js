@@ -84,6 +84,29 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.querySelectorAll('.motif-video').forEach(v => v.pause());
 }
 
+// story carousel: swaps the media + copy panel together, driven by the
+// arrow buttons or the dots -- each panel's slides share a `data-slide`
+// index so media and copy always advance in lockstep
+document.querySelectorAll('.story.carousel').forEach(car => {
+  const mediaSlides = car.querySelectorAll('.car-media .car-slide');
+  const bodySlides = car.querySelectorAll('.car-body .car-slide');
+  const dots = car.querySelectorAll('.car-dots .dot');
+  const prevBtn = car.querySelector('.car-arrow.prev');
+  const nextBtn = car.querySelector('.car-arrow.next');
+  const total = bodySlides.length;
+  if (!total) return;
+  let current = 0;
+  const show = (index) => {
+    current = (index + total) % total;
+    mediaSlides.forEach((el, i) => el.classList.toggle('active', i === current));
+    bodySlides.forEach((el, i) => el.classList.toggle('active', i === current));
+    dots.forEach((el, i) => el.classList.toggle('active', i === current));
+  };
+  prevBtn && prevBtn.addEventListener('click', () => show(current - 1));
+  nextBtn && nextBtn.addEventListener('click', () => show(current + 1));
+  dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
+});
+
 // mobile off-canvas menu
 (function () {
   const toggle = document.querySelector('.nav-toggle');
