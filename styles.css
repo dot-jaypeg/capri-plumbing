@@ -590,7 +590,14 @@ header.nav.nav-transparent .btn-primary:hover{background:#fff}
 .finalcta .fc-row b{font-size:15px;display:block}
 .finalcta .fc-row span{font-size:14.5px;color:var(--muted)}
 .finalcta .fc-row a{font-weight:600}
-.finalcta.navy{background:var(--navy-grad);color:#fff;position:relative;overflow:hidden}
+/* a straight-down (not the sitewide 115deg diagonal) version of the same
+   navy-grad palette -- a diagonal gradient samples a different color at
+   the same y-position depending on how wide/tall each box is, so two
+   independently-sized sections using var(--navy-grad) don't actually
+   line up at their shared edge. Going vertical makes the color at any
+   given height identical regardless of box size, which is what lets this
+   section's top match the subhero's bottom exactly (see .navy-fade). */
+.finalcta.navy{background:linear-gradient(180deg,var(--navy-950) 0%,var(--navy-800) 45%,var(--navy-950) 100%);color:#fff;position:relative;overflow:hidden}
 .finalcta.navy h2{color:#fff}
 .finalcta.navy .lead{color:#c7cee6}
 .finalcta.navy .fc-row b{color:#fff}
@@ -650,9 +657,7 @@ footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px;position:rel
    below, so pages that follow the subhero with a navy block (e.g. contact's
    .finalcta.navy) have no visible seam */
 .subhero.navy-fade .subhero-bg::after{
-  background:var(--navy-grad);
-  mask-image:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.65) 35%,#000 75%,#000 100%);
-  -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.65) 35%,#000 75%,#000 100%)}
+  background:linear-gradient(180deg,rgba(11,20,65,.3) 0%,rgba(19,35,99,.6) 40%,var(--navy-950) 75%,var(--navy-950) 100%)}
 /* swap the hero-signature blueprint grid for the same halftone dot
    texture the navy section below it uses, so the two read as one
    continuous navy surface rather than two different dark treatments */
