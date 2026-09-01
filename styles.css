@@ -658,10 +658,6 @@ footer{background:var(--navy-950);color:#b7c0e2;padding:74px 0 34px;position:rel
    .finalcta.navy) have no visible seam */
 .subhero.navy-fade .subhero-bg::after{
   background:linear-gradient(180deg,rgba(11,20,65,.3) 0%,rgba(19,35,99,.6) 40%,var(--navy-950) 75%,var(--navy-950) 100%)}
-/* swap the hero-signature blueprint grid for the same halftone dot
-   texture the navy section below it uses, so the two read as one
-   continuous navy surface rather than two different dark treatments */
-.subhero.navy-fade::before{background-image:var(--halftone);background-size:14px 14px}
 .subhero .wrap{position:relative;z-index:2}
 /* lets a page shift its hero copy to whichever side of the background
    media should stay visually clear -- used on About so the text sits
