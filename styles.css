@@ -590,7 +590,7 @@ header.nav.nav-transparent .btn-primary:hover{background:#fff}
 .finalcta .fc-row b{font-size:15px;display:block}
 .finalcta .fc-row span{font-size:14.5px;color:var(--muted)}
 .finalcta .fc-row a{font-weight:600}
-.finalcta.navy{background:var(--navy-950);color:#fff}
+.finalcta.navy{background:var(--navy-grad);color:#fff;position:relative;overflow:hidden}
 .finalcta.navy h2{color:#fff}
 .finalcta.navy .lead{color:#c7cee6}
 .finalcta.navy .fc-row b{color:#fff}
@@ -811,6 +811,7 @@ body.mm-open{overflow:hidden}
 }
 @keyframes pipeFlow{to{background-position:170% 0,0 0,0 0}}
 .pipe-divider{width:100%;padding:24px 0;overflow:hidden}
+.pipe-divider.tint{background:var(--bone)}
 .pipe-divider .pipe{height:12px;width:100%;box-shadow:var(--shadow-sm)}
 .pipe-connector{width:48px;height:11px}
 @media(prefers-reduced-motion:reduce){.pipe,.how-step:not(:last-child)::after{animation:none}}
@@ -854,7 +855,7 @@ body.mm-open{overflow:hidden}
    this instead, so the grid stays a hero-only signature while the rest of
    the dark bands still read as textured, not flat ---------- */
 .cta-band::before,.emergency-bar::after,.compare::before,.social::before,
-.finance::before{
+.finance::before,.finalcta.navy::before{
   content:"";position:absolute;inset:0;pointer-events:none;
   background-image:var(--halftone);background-size:14px 14px;
   mask-image:radial-gradient(120% 90% at 50% 0%,#000 40%,transparent 100%);
@@ -862,8 +863,8 @@ body.mm-open{overflow:hidden}
 .cta-band::before{z-index:0}
 .cta-band .wrap{position:relative;z-index:1}
 .emergency-bar::after{z-index:0}
-.compare::before,.social::before,.finance::before{z-index:0}
-.compare .wrap,.social .wrap,footer .wrap,.finance .wrap{position:relative;z-index:1}
+.compare::before,.social::before,.finance::before,.finalcta.navy::before{z-index:0}
+.compare .wrap,.social .wrap,footer .wrap,.finance .wrap,.finalcta.navy .wrap{position:relative;z-index:1}
 
 /* ---------- angled top edge on navy sections that have real content
    sitting behind them to reveal -- clip-path only removes pixels from the
@@ -888,6 +889,11 @@ body.mm-open{overflow:hidden}
    smaller overlap stays within the divider's bottom padding instead. */
 .finance{clip-path:polygon(0 18px,100% 0,100% 100%,0 100%);margin-top:-18px}
 @media(max-width:640px){.finance{clip-path:none;margin-top:0}}
+/* reusable version of the same technique for one-off cases (e.g. the
+   contact page's navy finalcta into the bone "Find Us" section) --
+   apply to the section that comes AFTER the one that should show through */
+.angled-top{clip-path:polygon(0 36px,100% 0,100% 100%,0 100%);margin-top:-36px}
+@media(max-width:640px){.angled-top{clip-path:none;margin-top:0}}
 
 /* ---------- marquee ticker: an infinite-scroll strip of brand claims in
    the light-blue brand accent, breaking up the page's navy rhythm with a
