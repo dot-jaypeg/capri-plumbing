@@ -597,7 +597,8 @@ header.nav.nav-transparent .btn-primary:hover{background:#fff}
    line up at their shared edge. Going vertical makes the color at any
    given height identical regardless of box size, which is what lets this
    section's top match the subhero's bottom exactly (see .navy-fade). */
-.finalcta.navy{background:linear-gradient(180deg,var(--navy-950) 0%,var(--navy-800) 45%,var(--navy-950) 100%);color:#fff;position:relative;overflow:hidden}
+.finalcta.navy{background:linear-gradient(180deg,var(--navy-950) 0%,var(--navy-800) 45%,var(--navy-950) 100%);color:#fff;position:relative;overflow:hidden;
+  border-top:1px solid rgba(255,255,255,.14)}
 .finalcta.navy h2{color:#fff}
 .finalcta.navy .lead{color:#c7cee6}
 .finalcta.navy .fc-row b{color:#fff}
