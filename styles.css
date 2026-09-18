@@ -202,7 +202,7 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 @keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.4}}
 @media(prefers-reduced-motion:reduce){.hero-badge .dot{animation:none}}
 .hero h1{font-size:clamp(3rem,6vw,5.5rem);font-weight:700;margin:0;letter-spacing:-.02em;color:#fff}
-.hero h1 em{font-style:normal;color:var(--blue)}
+.hero h1 em{font-style:normal;color:#fff}
 .hero p.sub{font-size:19px;color:var(--accent-lt);max-width:520px;margin-top:22px}
 .hero .hero-actions{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap}
 .trust-stats{display:flex;gap:64px;flex-wrap:wrap;align-items:flex-start;justify-content:center;flex-shrink:0}
@@ -626,7 +626,7 @@ footer{background:var(--navy);color:var(--accent-lt);padding:74px 0 34px;positio
 .subhero .eyebrow{color:var(--accent-lt)}
 .subhero .eyebrow::before{background:var(--blue)}
 .subhero h1{font-size:clamp(2.5rem,4.2vw,4rem);font-weight:700;letter-spacing:-.03em;margin-top:18px;max-width:18ch;color:#fff}
-.subhero h1 em{font-style:normal;color:var(--blue)}
+.subhero h1 em{font-style:normal;color:#fff}
 .subhero p.sub{color:var(--accent-lt);font-size:18px;margin-top:20px;max-width:600px}
 .subhero-actions{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
 @media(max-width:760px){.subhero h1{font-size:clamp(2.25rem,5vw,3rem)}}
