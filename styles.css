@@ -510,6 +510,14 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .area .cities{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
 .area .cities span{background:#fff;border:1px solid var(--line);border-radius:100px;
   padding:8px 16px;font-size:13.5px;font-weight:500;color:var(--accent)}
+.zip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:2px 32px;margin-top:8px}
+.zip-row{display:flex;justify-content:space-between;gap:14px;padding:11px 0;
+  border-bottom:1px solid var(--line);font-size:14px}
+.zip-row b{font-weight:600;color:var(--navy)}
+.zip-row span{color:var(--accent);text-align:right}
+.zip-note{margin-top:30px;font-size:15px;color:var(--accent);text-align:center}
+.zip-note a{color:var(--navy);font-weight:600;text-decoration:underline}
 .faq-item{border-bottom:1px solid var(--line)}
 .faq-q{width:100%;background:none;border:0;text-align:left;cursor:pointer;padding:22px 40px 22px 0;
   font-family:var(--head);font-size:18px;font-weight:600;color:var(--navy);position:relative;display:block;
