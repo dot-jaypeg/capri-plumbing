@@ -265,7 +265,8 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
 .story-media{position:relative}
 .story-media .m-main{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);aspect-ratio:4/5}
-.story-media .m-main img{width:100%;height:100%;object-fit:cover}
+.story-media .m-main img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.story-media:hover .m-main img{transform:scale(1.05)}
 .story-media .m-badge{position:absolute;bottom:-26px;left:-26px;background:var(--navy);color:#fff;
   border-radius:var(--radius-lg);padding:22px 26px;box-shadow:var(--shadow);max-width:230px}
 .story-media .m-badge b{font-family:var(--head);font-size:38px;color:#fff;display:block;line-height:1}
@@ -464,7 +465,9 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .reviews .rv-score b{font-family:var(--head);font-size:22px}
 .reviews .rv-score span{font-size:13px;color:var(--accent)}
 .rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
-.rv-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:32px 30px;box-shadow:var(--shadow-sm)}
+.rv-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:32px 30px;box-shadow:var(--shadow-sm);
+  transition:box-shadow .3s,transform .3s var(--ease)}
+.rv-card:hover{box-shadow:var(--shadow);transform:translateY(-4px)}
 .rv-card .stars{color:var(--blue);letter-spacing:2px;font-size:15px}
 .rv-card p{font-size:15.5px;color:var(--navy);margin:16px 0 22px;line-height:1.65}
 .rv-card .rv-by{display:flex;align-items:center;gap:12px}
@@ -522,6 +525,7 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .faq-q{width:100%;background:none;border:0;text-align:left;cursor:pointer;padding:22px 40px 22px 0;
   font-family:var(--head);font-size:18px;font-weight:600;color:var(--navy);position:relative;display:block;
   transition:color .3s ease}
+.faq-q:hover{color:var(--blue)}
 .faq-q::after{content:"+";position:absolute;right:0;top:18px;font-family:var(--head);font-size:26px;
   font-weight:400;color:var(--blue);transition:transform .4s var(--ease),color .3s ease;
   display:inline-block;transform-origin:center}
@@ -655,8 +659,8 @@ footer{background:var(--navy);color:var(--accent-lt);padding:74px 0 34px;positio
 
 .specs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
 .spec{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:32px 28px;box-shadow:var(--shadow-sm);
-  transition:box-shadow .35s}
-.spec:hover{box-shadow:var(--shadow)}
+  transition:box-shadow .35s,transform .35s var(--ease)}
+.spec:hover{box-shadow:var(--shadow);transform:translateY(-4px)}
 .spec .ic{width:52px;height:52px;border-radius:var(--radius);background:var(--offwhite);display:grid;place-items:center;margin-bottom:20px;
   transition:background-color .3s}
 .spec:hover .ic{background:var(--navy)}
@@ -664,6 +668,8 @@ footer{background:var(--navy);color:var(--accent-lt);padding:74px 0 34px;positio
 .spec .ic i{font-size:25px;color:var(--navy)}
 .spec h3{font-size:19px}
 .spec p{color:var(--accent);font-size:14.5px;margin-top:10px}
+.spec .fa-arrow-right{transition:transform .3s var(--ease)}
+.spec:hover .fa-arrow-right{transform:translateX(4px)}
 @media(max-width:860px){.specs{grid-template-columns:1fr}}
 
 .cta-band{position:relative;background:var(--navy);color:#fff;text-align:center;padding:92px 0}
@@ -677,8 +683,8 @@ footer{background:var(--navy);color:var(--accent-lt);padding:74px 0 34px;positio
 /* --- specials / pricing table --- */
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
 .price-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:34px 30px;
-  box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:box-shadow .3s;position:relative}
-.price-card:hover{box-shadow:var(--shadow)}
+  box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:box-shadow .3s,transform .3s var(--ease);position:relative}
+.price-card:hover{box-shadow:var(--shadow);transform:translateY(-4px)}
 .price-card.featured{background:var(--navy);border-color:var(--navy)}
 .price-card.featured .badge-best{position:absolute;top:-13px;left:30px;background:var(--blue);color:#fff;
   font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 13px;border-radius:100px}
