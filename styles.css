@@ -20,9 +20,9 @@
 @font-face{font-family:"Gravity";src:url("assets/fonts/body copy/gravity/Gravity-BoldItalic.otf") format("opentype");font-weight:700;font-style:italic;font-display:swap}
 
 :root{
-  --navy:#030F2B;
-  --navy-700:#132751;
-  --navy-600:#1E366B;
+  --navy:#03102B;
+  --navy-700:#061634;
+  --navy-600:#0A1C40;
   --blue:#5D92FF;
   --blue-dark:#3F7CFF;
   --white:#ffffff;
@@ -33,8 +33,8 @@
   --line-dark:rgba(255,255,255,.14);
   --radius:14px;
   --radius-lg:22px;
-  --shadow-sm:0 1px 2px rgba(3,15,43,.06),0 1px 1px rgba(3,15,43,.04);
-  --shadow:0 8px 24px rgba(3,15,43,.10);
+  --shadow-sm:0 1px 2px rgba(3,16,43,.06),0 1px 1px rgba(3,16,43,.04);
+  --shadow:0 8px 24px rgba(3,16,43,.10);
   --maxw:1240px;
   --ease:cubic-bezier(.2,.7,.2,1);
   --head:"Suisse Intl",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -183,7 +183,7 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .hero-bg{position:absolute;left:0;right:0;top:-8%;height:118%;z-index:0;will-change:transform}
 .hero-bg video,.hero-bg img{width:100%;height:100%;object-fit:cover}
 .hero-bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(105deg,rgba(3,15,43,.92) 0%,rgba(3,15,43,.72) 42%,rgba(3,15,43,.38) 100%);}
+  background:linear-gradient(105deg,rgba(3,16,43,.92) 0%,rgba(3,16,43,.72) 42%,rgba(3,16,43,.38) 100%);}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;z-index:1;pointer-events:none;
   background:linear-gradient(180deg,transparent,var(--navy) 92%)}
 .hero .wrap{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;
@@ -227,7 +227,7 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
   background:var(--navy);text-decoration:none;
   border-radius:var(--radius-lg);padding:18px 20px;box-shadow:var(--shadow);max-width:280px;
   transition:box-shadow .25s}
-.emergency-toast:hover{box-shadow:0 12px 32px rgba(3,15,43,.22)}
+.emergency-toast:hover{box-shadow:0 12px 32px rgba(3,16,43,.22)}
 .emergency-toast .et-msg{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--accent-lt)}
 .emergency-toast .et-msg i{font-size:20px;color:var(--blue);flex-shrink:0}
 .emergency-toast .et-msg b{color:#fff;font-family:var(--head)}
@@ -321,7 +321,7 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
   transition:transform 1s cubic-bezier(.2,.8,.2,1),filter .6s ease;will-change:transform,filter}
 .prod-card:hover img{transform:scale(1.05)}
 .prod-card::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;transition:background .4s ease;
-  background:linear-gradient(180deg,rgba(3,15,43,.18) 0%,rgba(3,15,43,.12) 42%,rgba(3,15,43,.9) 100%)}
+  background:linear-gradient(180deg,rgba(3,16,43,.18) 0%,rgba(3,16,43,.12) 42%,rgba(3,16,43,.9) 100%)}
 .pc-collapsed{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;
   padding:clamp(20px,2vw,30px) clamp(15px,1.3vw,24px);pointer-events:none;transition:opacity .35s ease}
 .pc-collapsed .pc-num{font-weight:600;font-size:clamp(11px,.9vw,13px);letter-spacing:.18em;color:var(--blue);
@@ -393,7 +393,7 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .proj-media{display:flex;gap:12px;height:clamp(340px,40vw,500px)}
 .proj-shot{flex:1;min-width:0;position:relative;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)}
 .proj-shot img{width:100%;height:100%;object-fit:cover;display:block}
-.proj-shot .lbl{position:absolute;top:12px;left:12px;background:rgba(3,15,43,.8);color:#fff;
+.proj-shot .lbl{position:absolute;top:12px;left:12px;background:rgba(3,16,43,.8);color:#fff;
   font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 11px;border-radius:100px}
 .proj-info{background:var(--offwhite);border-radius:var(--radius-lg);padding:46px 44px;display:flex;flex-direction:column;justify-content:center}
 .proj-info .p-eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:600}
@@ -442,7 +442,7 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .social-card:hover{box-shadow:var(--shadow)}
 .social-card video{width:100%;height:100%;object-fit:cover;display:block}
 .social-card::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(to top,rgba(3,15,43,.7) 0%,transparent 42%)}
+  background:linear-gradient(to top,rgba(3,16,43,.7) 0%,transparent 42%)}
 .social-card .sc-tag{position:absolute;top:16px;left:16px;z-index:1;background:rgba(255,255,255,.14);
   border:1px solid rgba(255,255,255,.28);color:#fff;font-family:var(--head);font-size:11px;font-weight:700;
   letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:100px}
@@ -493,7 +493,7 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .oc-band{position:relative;height:78vh;min-height:520px;overflow:hidden;color:#fff}
 .oc-band video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .oc-band::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(3,15,43,.2) 0%,rgba(3,15,43,.5) 62%,rgba(3,15,43,.94) 100%)}
+  background:linear-gradient(180deg,rgba(3,16,43,.2) 0%,rgba(3,16,43,.5) 62%,rgba(3,16,43,.94) 100%)}
 .oc-band .wrap{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:64px}
 .oc-band .eyebrow{color:var(--accent-lt)}
 .oc-band .eyebrow::before{background:var(--blue)}
@@ -606,12 +606,12 @@ footer{background:var(--navy);color:var(--accent-lt);padding:74px 0 34px;positio
 @media(prefers-reduced-motion:reduce){.subhero-bg{transform:none!important}}
 .subhero-bg img,.subhero-bg video{width:100%;height:100%;object-fit:cover;opacity:.6}
 .subhero-bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(3,15,43,.55) 0%,rgba(3,15,43,.4) 45%,rgba(3,15,43,.85) 100%)}
+  background:linear-gradient(180deg,rgba(3,16,43,.55) 0%,rgba(3,16,43,.4) 45%,rgba(3,16,43,.85) 100%)}
 /* fades the hero image all the way to a flat navy that matches the section
    below, so pages that follow the subhero with a navy block (e.g. contact's
    .finalcta.navy) have no visible seam */
 .subhero.navy-fade .subhero-bg::after{
-  background:linear-gradient(180deg,rgba(3,15,43,.3) 0%,rgba(3,15,43,.6) 40%,var(--navy) 75%,var(--navy) 100%)}
+  background:linear-gradient(180deg,rgba(3,16,43,.3) 0%,rgba(3,16,43,.6) 40%,var(--navy) 75%,var(--navy) 100%)}
 .subhero .wrap{position:relative;z-index:2}
 /* lets a page shift its hero copy to whichever side of the background
    media should stay visually clear -- used on About so the text sits
@@ -725,12 +725,12 @@ footer{background:var(--navy);color:var(--accent-lt);padding:74px 0 34px;positio
 /* ============================================================
    MOBILE NAV (off-canvas)
    ============================================================ */
-.mm-backdrop{position:fixed;inset:0;background:rgba(3,15,43,.6);z-index:190;opacity:0;visibility:hidden;
+.mm-backdrop{position:fixed;inset:0;background:rgba(3,16,43,.6);z-index:190;opacity:0;visibility:hidden;
   transition:opacity .3s,visibility .3s}
 .mm-backdrop.open{opacity:1;visibility:visible}
 .mobile-menu{position:fixed;top:0;right:0;height:100%;width:min(86vw,380px);background:var(--navy);color:#fff;
   z-index:200;transform:translateX(100%);transition:transform .42s var(--ease);
-  padding:32px 32px 40px;box-shadow:-8px 0 32px rgba(3,15,43,.28);overflow-y:auto;display:flex;flex-direction:column}
+  padding:32px 32px 40px;box-shadow:-8px 0 32px rgba(3,16,43,.28);overflow-y:auto;display:flex;flex-direction:column}
 .mobile-menu.open{transform:none}
 .mm-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
 .mm-head img{height:52px}
