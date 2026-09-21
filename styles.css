@@ -121,7 +121,7 @@ body.loaded #preloader{opacity:0;visibility:hidden;transition:opacity .4s ease,v
 
 /* ---------- top utility bar ---------- */
 .utility{background:var(--navy);color:var(--accent-lt);font-size:13px}
-.utility .wrap{display:flex;align-items:center;justify-content:space-between;height:42px;gap:20px}
+.utility .wrap{display:flex;align-items:center;justify-content:center;height:42px;gap:20px}
 .utility a{color:var(--accent-lt);transition:color .2s}
 .utility a:hover{color:#fff}
 .utility .u-left{display:flex;gap:26px;align-items:center}
@@ -192,17 +192,17 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 @media(prefers-reduced-motion:reduce){.hero-bg{transform:none!important}}
 .hero-copy .eyebrow{color:var(--accent-lt)}
 .hero-copy .eyebrow::before{background:var(--blue)}
-.hero-logo{height:clamp(40px,4.4vw,56px);width:auto;margin-bottom:24px;filter:brightness(0) invert(1);opacity:.96}
+.hero-logo{height:clamp(64px,7vw,96px);width:auto;margin-bottom:24px;filter:brightness(0) invert(1);opacity:.96}
 .hero-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);
   border:1px solid rgba(255,255,255,.24);padding:8px 16px;border-radius:100px;
   font-size:13px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:#fff;
-  margin-bottom:22px}
+  margin-top:26px}
 .hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);flex:none;
   animation:pulseDot 1.8s ease-in-out infinite}
 @keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.4}}
 @media(prefers-reduced-motion:reduce){.hero-badge .dot{animation:none}}
 .hero h1{font-size:clamp(3rem,6vw,5.5rem);font-weight:700;margin:0;letter-spacing:-.02em;color:#fff}
-.hero h1 em{font-style:normal;color:#fff}
+.hero h1 em{font-style:normal;color:var(--blue)}
 .hero p.sub{font-size:19px;color:var(--accent-lt);max-width:520px;margin-top:22px}
 .hero .hero-actions{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap}
 .trust-stats{display:flex;gap:64px;flex-wrap:wrap;align-items:flex-start;justify-content:center;flex-shrink:0}

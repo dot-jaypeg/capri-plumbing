@@ -83,9 +83,8 @@
   <div class="wrap">
     <div class="hero-copy">
       <img class="hero-logo" src="assets/logos/Capri-Logo-White.png" alt="Capri Plumbing">
-      <span class="hero-badge"><span class="dot" aria-hidden="true"></span>24/7 Emergency Service &middot; Orange County</span>
       <h1>Servicing OC,<br><em>one home at a time.</em></h1>
-      <p class="sub">Family-owned plumbing &amp; HVAC, on call day and night &mdash; Capri technicians dispatched across Orange County in an average of 30 minutes.</p>
+      <span class="hero-badge"><span class="dot" aria-hidden="true"></span>24/7 Emergency Service &middot; Orange County</span>
       <div class="hero-actions">
         <a class="btn btn-ghost btn-lg" href="tel:+19499192554"><i class="fa-solid fa-phone" aria-hidden="true"></i>(949) 919-2554</a>
         <a class="btn btn-primary btn-lg" href="contact.html">Get A Free Quote &rarr;</a>
@@ -286,13 +285,16 @@
     <div class="fc-card">
       <h3>Request service.</h3>
       <p class="fc-sub">Fill this out and we'll reach out right away.</p>
-      <!-- form action to be wired to CRM / lead pipeline before launch -->
-      <form onsubmit="return false">
-        <div class="row"><input type="text" placeholder="First name" required><input type="text" placeholder="Last name" required></div>
-        <div class="row"><input type="tel" placeholder="Phone" required><input type="email" placeholder="Email" required></div>
-        <input type="text" placeholder="City / neighborhood">
-        <select><option value="" disabled selected>What do you need?</option><option>Plumbing repair</option><option>Drain / sewer</option><option>Water heater</option><option>Repiping</option><option>Heating &amp; air</option><option>Not sure yet</option></select>
-        <textarea rows="3" placeholder="Tell us what's going on (optional)"></textarea>
+      <form action="https://formsubmit.co/service@capriplumbing.com" method="POST">
+        <input type="hidden" name="_subject" value="New service request — Capri Plumbing website">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" style="display:none">
+        <div class="row"><input type="text" name="first_name" placeholder="First name" required><input type="text" name="last_name" placeholder="Last name" required></div>
+        <div class="row"><input type="tel" name="phone" placeholder="Phone" required><input type="email" name="email" placeholder="Email" required></div>
+        <input type="text" name="address" placeholder="City / neighborhood">
+        <select name="service_needed"><option value="" disabled selected>What do you need?</option><option>Plumbing repair</option><option>Drain / sewer</option><option>Water heater</option><option>Repiping</option><option>Heating &amp; air</option><option>Not sure yet</option></select>
+        <textarea rows="3" name="message" placeholder="Tell us what's going on (optional)"></textarea>
         <button class="btn btn-primary btn-lg" type="submit">Request Service &rarr;</button>
       </form>
     </div>
