@@ -120,8 +120,7 @@ header.nav.nav-transparent .btn-primary:hover{background:var(--offwhite)}
 body.loaded #preloader{opacity:0;visibility:hidden;transition:opacity .4s ease,visibility 0s linear .4s}
 
 /* ---------- top utility bar ---------- */
-.utility{background:rgba(3,16,43,.68);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  color:var(--accent-lt);font-size:13px}
+.utility{background:var(--navy);color:var(--accent-lt);font-size:13px}
 .utility .wrap{display:flex;align-items:center;justify-content:center;height:46px;gap:32px}
 .utility a{color:var(--accent-lt);transition:color .2s}
 .utility a:hover{color:#fff}
@@ -184,7 +183,9 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .hero-bg{position:absolute;left:0;right:0;top:-8%;height:118%;z-index:0;will-change:transform}
 .hero-bg video,.hero-bg img{width:100%;height:100%;object-fit:cover}
 .hero-bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(105deg,rgba(3,16,43,.92) 0%,rgba(3,16,43,.72) 42%,rgba(3,16,43,.38) 100%);}
+  background:
+    linear-gradient(180deg,rgba(3,16,43,.85) 0%,rgba(3,16,43,0) 14%),
+    linear-gradient(105deg,rgba(3,16,43,.92) 0%,rgba(3,16,43,.72) 42%,rgba(3,16,43,.38) 100%);}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;z-index:1;pointer-events:none;
   background:linear-gradient(180deg,transparent,var(--navy) 92%)}
 .hero .wrap{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;
@@ -601,7 +602,7 @@ footer{background:var(--navy);color:var(--accent-lt);padding:74px 0 34px;positio
 @media(prefers-reduced-motion:reduce){.subhero-bg{transform:none!important}}
 .subhero-bg img,.subhero-bg video{width:100%;height:100%;object-fit:cover;opacity:.6}
 .subhero-bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(3,16,43,.55) 0%,rgba(3,16,43,.4) 45%,rgba(3,16,43,.85) 100%)}
+  background:linear-gradient(180deg,rgba(3,16,43,.85) 0%,rgba(3,16,43,.55) 14%,rgba(3,16,43,.4) 45%,rgba(3,16,43,.85) 100%)}
 /* fades the hero image all the way to a flat navy that matches the section
    below, so pages that follow the subhero with a navy block (e.g. contact's
    .finalcta.navy) have no visible seam */
