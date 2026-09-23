@@ -283,7 +283,8 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
    side and media on the other, arrows floating just outside it) ---------- */
 .story.carousel .wrap{display:block;position:relative}
 .car-card{background:var(--offwhite);border-radius:var(--radius-lg);overflow:hidden;
-  display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:520px}
+  display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr);align-items:stretch;
+  height:clamp(260px,32vw,360px)}
 /* overflow:hidden clips at the padding edge, not the content edge -- so
    padding has to live INSIDE the clipped/sliding piece (on each slide, or
    on an inner viewport for media) rather than on the element overflow is
@@ -294,10 +295,12 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
    a single-line flex row's height auto-stretches every item to match the
    tallest one, so the card height still stays constant across slides */
 .car-body .car-track{display:flex;height:100%;transition:transform .6s var(--ease)}
-.car-body .car-slide{flex:none;min-width:0;padding:64px;display:flex;flex-direction:column;justify-content:center}
-.car-body h2{margin-top:0}
-.car-body a.btn{margin-top:32px;align-self:flex-start}
-.car-media{position:relative;padding:28px}
+.car-body .car-slide{flex:none;min-width:0;padding:36px 48px;display:flex;flex-direction:column;justify-content:center}
+.car-body h2{margin-top:0;font-size:clamp(20px,2.1vw,30px);line-height:1.12}
+.car-body .lead{font-size:15px;margin-top:10px;line-height:1.55;display:-webkit-box;
+  -webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.car-body a.btn{margin-top:18px;align-self:flex-start}
+.car-media{position:relative;padding:16px}
 .car-media .car-viewport{position:relative;height:100%;border-radius:var(--radius-lg);overflow:hidden}
 .car-media .car-track{display:flex;height:100%;transition:transform .6s var(--ease)}
 .car-media .car-slide{flex:none;min-width:0;height:100%}
@@ -316,9 +319,10 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
   transition:background .2s,transform .2s}
 .car-dots .dot.active{background:var(--navy);transform:scale(1.25)}
 @media(max-width:900px){
-  .car-card{grid-template-columns:1fr;min-height:0}
-  .car-media{order:-1;aspect-ratio:4/3;padding:16px}
+  .car-card{grid-template-columns:1fr;grid-template-rows:auto auto;height:auto}
+  .car-media{order:-1;aspect-ratio:16/9;padding:16px}
   .car-body .car-slide{padding:40px 32px}
+  .car-body h2{font-size:clamp(24px,5vw,32px)}
   .car-arrow{display:none}
 }
 @media(max-width:520px){.car-body .car-slide{padding:32px 24px}}
@@ -334,6 +338,9 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .prod-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--navy);
   transition:transform 1s cubic-bezier(.2,.8,.2,1),filter .6s ease;will-change:transform,filter}
 .prod-card:hover img{transform:scale(1.05)}
+/* uniform navy tint across every card photo so mixed source images read as one cohesive set */
+.prod-card::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:var(--navy-600);mix-blend-mode:color;opacity:.55}
 .prod-card::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;transition:background .4s ease;
   background:linear-gradient(180deg,rgba(3,16,43,.18) 0%,rgba(3,16,43,.12) 42%,rgba(3,16,43,.9) 100%)}
 .pc-collapsed{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;
