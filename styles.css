@@ -284,9 +284,13 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .story.carousel .wrap{display:block;position:relative}
 .car-card{background:var(--offwhite);border-radius:var(--radius-lg);overflow:hidden;
   display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:520px}
-.car-body{position:relative;display:flex;align-items:center;padding:64px}
-.car-body .car-slide{display:none;width:100%}
-.car-body .car-slide.active{display:block}
+.car-body{position:relative;display:grid;padding:64px}
+/* every slide shares the same grid cell so the row sizes to the tallest
+   one -- keeps the card a constant height across slides instead of
+   shrinking/growing to whichever slide happens to be active */
+.car-body .car-slide{grid-area:1/1;align-self:center;width:100%;
+  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s ease}
+.car-body .car-slide.active{opacity:1;visibility:visible;pointer-events:auto}
 .car-body h2{margin-top:0}
 .car-media{position:relative}
 .car-media .car-slide{position:absolute;inset:0;opacity:0;transition:opacity .4s ease}
