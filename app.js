@@ -141,9 +141,21 @@ document.querySelectorAll('.story.carousel').forEach(car => {
     bodySlides.forEach((el, i) => el.classList.toggle('active', i === current));
     dots.forEach((el, i) => el.classList.toggle('active', i === current));
   };
-  prevBtn && prevBtn.addEventListener('click', () => show(current - 1));
-  nextBtn && nextBtn.addEventListener('click', () => show(current + 1));
-  dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
+  // auto-advance on a timer, skipped for reduced-motion users; any manual
+  // interaction (arrows or dots) restarts the timer instead of fighting it
+  let timer;
+  const AUTO_MS = 6000;
+  const startAuto = () => {
+    if (total < 2 || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    timer = setInterval(() => show(current + 1), AUTO_MS);
+  };
+  const restartAuto = () => { clearInterval(timer); startAuto(); };
+
+  prevBtn && prevBtn.addEventListener('click', () => { show(current - 1); restartAuto(); });
+  nextBtn && nextBtn.addEventListener('click', () => { show(current + 1); restartAuto(); });
+  dots.forEach((dot, i) => dot.addEventListener('click', () => { show(i); restartAuto(); }));
+
+  startAuto();
 });
 
 // mobile off-canvas menu
