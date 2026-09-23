@@ -284,7 +284,7 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .story.carousel .wrap{display:block;position:relative;max-width:none;padding:0 2%}
 .car-card{background:var(--offwhite);border-radius:var(--radius-lg);overflow:hidden;
   display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr);align-items:stretch;
-  height:clamp(340px,38vw,460px)}
+  height:clamp(420px,62vh,620px)}
 /* overflow:hidden clips at the padding edge, not the content edge -- so
    padding has to live INSIDE the clipped/sliding piece (on each slide, or
    on an inner viewport for media) rather than on the element overflow is
@@ -306,12 +306,6 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .car-media .car-slide{flex:none;min-width:0;height:100%}
 .car-media img.car-slide{width:100%;height:100%;object-fit:cover;display:block}
 @media(prefers-reduced-motion:reduce){.car-body .car-track,.car-media .car-track{transition:none}}
-.car-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;
-  background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);display:flex;align-items:center;
-  justify-content:center;color:var(--navy);cursor:pointer;transition:background .2s,box-shadow .2s;z-index:3}
-.car-arrow:hover{background:var(--offwhite);box-shadow:var(--shadow)}
-.car-arrow.prev{left:-10px}
-.car-arrow.next{right:-10px}
 .car-dots{display:flex;gap:8px;justify-content:center;margin-top:28px}
 .car-dots .dot{width:9px;height:9px;border-radius:50%;background:var(--line);border:0;padding:0;cursor:pointer;
   transition:background .2s,transform .2s}
@@ -321,7 +315,6 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
   .car-media{order:-1;aspect-ratio:16/9;padding:16px}
   .car-body .car-slide{padding:40px 32px}
   .car-body h2{font-size:clamp(24px,5vw,32px)}
-  .car-arrow{display:none}
 }
 @media(max-width:520px){.car-body .car-slide{padding:32px 24px}}
 
