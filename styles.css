@@ -281,7 +281,7 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 /* ---------- story carousel (merges the intro story + "who we help" cards
    into one rotating card, Nuve-style: one unified panel with text on one
    side and media on the other, arrows floating just outside it) ---------- */
-.story.carousel .wrap{display:block;position:relative}
+.story.carousel .wrap{display:block;position:relative;max-width:none;padding:0 2%}
 .car-card{background:var(--offwhite);border-radius:var(--radius-lg);overflow:hidden;
   display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr);align-items:stretch;
   height:clamp(340px,38vw,460px)}
@@ -305,8 +305,6 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .car-media .car-track{display:flex;height:100%;transition:transform .6s var(--ease)}
 .car-media .car-slide{flex:none;min-width:0;height:100%}
 .car-media img.car-slide{width:100%;height:100%;object-fit:cover;display:block}
-.car-media .car-icon{display:flex;align-items:center;justify-content:center;background:var(--navy)}
-.car-media .car-icon i{font-size:min(16vw,100px);color:var(--blue)}
 @media(prefers-reduced-motion:reduce){.car-body .car-track,.car-media .car-track{transition:none}}
 .car-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;
   background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);display:flex;align-items:center;
