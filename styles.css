@@ -618,7 +618,7 @@ footer{background:var(--navy);color:var(--accent-lt);padding:74px 0 34px;positio
 @keyframes kenburnsA{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.14) translate(-2%,-1.2%)}}
 @keyframes kenburnsB{0%{transform:scale(1.14) translate(2%,1.2%)}100%{transform:scale(1) translate(0,0)}}
 @media(prefers-reduced-motion:reduce){.subhero-bg .ss-slide{animation:none!important;transition:none}}
-.subhero-bg::after{content:"";position:absolute;inset:0;
+.subhero-bg::after{content:"";position:absolute;inset:0;z-index:2;
   background:linear-gradient(180deg,rgba(3,16,43,.85) 0%,rgba(3,16,43,.55) 14%,rgba(3,16,43,.4) 45%,rgba(3,16,43,.85) 100%)}
 /* fades the hero image all the way to a flat navy that matches the section
    below, so pages that follow the subhero with a navy block (e.g. contact's
