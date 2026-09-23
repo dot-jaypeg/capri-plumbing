@@ -4,6 +4,8 @@ node_modules/
 # Unused source assets -- several exceed GitHub's 100MB file limit and aren't referenced by the site.
 # Compressed, web-ready versions actually used by the site live in assets/video/web/ and ARE tracked.
 assets/video/CAPRI PODCAST_1.mp4
+assets/video/b-roll video.mov
+assets/video/b-roll video 2.mov
 assets/stock video/
 
 # Design reference only (has its own nested git repo) -- not part of the Capri deliverable
