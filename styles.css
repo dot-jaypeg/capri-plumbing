@@ -609,6 +609,15 @@ footer{background:var(--navy);color:var(--accent-lt);padding:74px 0 34px;positio
 .subhero-bg{position:absolute;left:0;right:0;top:-8%;height:118%;z-index:0;will-change:transform}
 @media(prefers-reduced-motion:reduce){.subhero-bg{transform:none!important}}
 .subhero-bg img,.subhero-bg video{width:100%;height:100%;object-fit:cover;opacity:.6}
+/* subhero slideshow: crossfading photos, each with its own slow Ken Burns
+   zoom/pan running continuously so the motion never resets between slides */
+.subhero-bg .ss-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity 1.8s ease;animation:kenburnsA 18s ease-in-out infinite;will-change:transform,opacity}
+.subhero-bg .ss-slide.active{opacity:.6;z-index:1}
+.subhero-bg .ss-slide:nth-child(even){animation-name:kenburnsB}
+@keyframes kenburnsA{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.14) translate(-2%,-1.2%)}}
+@keyframes kenburnsB{0%{transform:scale(1.14) translate(2%,1.2%)}100%{transform:scale(1) translate(0,0)}}
+@media(prefers-reduced-motion:reduce){.subhero-bg .ss-slide{animation:none!important;transition:none}}
 .subhero-bg::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(3,16,43,.85) 0%,rgba(3,16,43,.55) 14%,rgba(3,16,43,.4) 45%,rgba(3,16,43,.85) 100%)}
 /* fades the hero image all the way to a flat navy that matches the section

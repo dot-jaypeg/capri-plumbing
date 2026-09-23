@@ -84,6 +84,23 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.querySelectorAll('.motif-video').forEach(v => v.pause());
 }
 
+// subhero slideshow: crossfades through a set of photos on a timer, each
+// already animating its own Ken Burns zoom/pan via CSS -- skipped entirely
+// for reduced-motion users, who just see the first (active) photo, static
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('.subhero-bg.slideshow').forEach(bg => {
+    const slides = bg.querySelectorAll('.ss-slide');
+    if (slides.length < 2) return;
+    let current = [...slides].findIndex(s => s.classList.contains('active'));
+    if (current < 0) current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 5500);
+  });
+}
+
 // story carousel: swaps the media + copy panel together, driven by the
 // arrow buttons or the dots -- each panel's slides share a `data-slide`
 // index so media and copy always advance in lockstep
