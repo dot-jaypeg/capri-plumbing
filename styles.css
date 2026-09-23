@@ -100,7 +100,7 @@ footer h2,footer h3,footer h4,
 .btn-outline{border-color:var(--navy);color:var(--navy)}
 .btn-outline:hover{background:var(--navy);color:#fff}
 .btn-accent{background:var(--blue-dark);color:#fff}
-.btn-accent:hover{background:var(--navy-600)}
+.btn-accent:hover{background:var(--blue)}
 .btn-text{background:none;border:0;padding:0;color:var(--navy);font-weight:600;text-decoration:underline;text-decoration-color:transparent;transition:text-decoration-color .25s}
 .btn-text:hover{text-decoration-color:currentColor}
 .btn-lg{padding:18px 34px;font-size:16px}
@@ -110,7 +110,7 @@ footer h2,footer h3,footer h4,
 .hero .btn-primary,.subhero .btn-primary,.cta-band .btn-primary,
 header.nav.nav-transparent .btn-primary{background:#fff;color:var(--navy)}
 .hero .btn-primary:hover,.subhero .btn-primary:hover,.cta-band .btn-primary:hover,
-header.nav.nav-transparent .btn-primary:hover{background:var(--offwhite)}
+header.nav.nav-transparent .btn-primary:hover{background:var(--blue-dark);color:#fff}
 
 /* ---------- preloader / page transition ---------- */
 #preloader{position:fixed;inset:0;z-index:400;background:var(--navy);
@@ -140,7 +140,7 @@ header.nav.scrolled{box-shadow:var(--shadow-sm)}
 header.nav.nav-transparent{background:transparent;border-bottom:1px solid transparent;box-shadow:none}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:84px;gap:24px}
 .nav .logo{position:relative;display:inline-flex;align-items:center;opacity:1;transition:opacity .35s ease}
-.nav .logo img{height:62px;transition:opacity .35s ease,height .3s ease}
+.nav .logo img{height:62px;max-width:none;transition:opacity .35s ease,height .3s ease}
 .nav .logo .logo-light{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);opacity:0}
 /* interior pages have no logo of their own in the subhero -- swap to the white cutout, no background needed */
 header.nav.nav-transparent .logo .logo-dark{opacity:0}
