@@ -284,7 +284,7 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .story.carousel .wrap{display:block;position:relative}
 .car-card{background:var(--offwhite);border-radius:var(--radius-lg);overflow:hidden;
   display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr);align-items:stretch;
-  height:clamp(260px,32vw,360px)}
+  height:clamp(340px,38vw,460px)}
 /* overflow:hidden clips at the padding edge, not the content edge -- so
    padding has to live INSIDE the clipped/sliding piece (on each slide, or
    on an inner viewport for media) rather than on the element overflow is
