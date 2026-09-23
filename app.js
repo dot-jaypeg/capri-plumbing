@@ -123,10 +123,12 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   });
 }
 
-// story carousel: swaps the media + copy panel together, driven by the
+// story carousel: slides the media + copy tracks together, driven by the
 // arrow buttons or the dots -- each panel's slides share a `data-slide`
 // index so media and copy always advance in lockstep
 document.querySelectorAll('.story.carousel').forEach(car => {
+  const bodyTrack = car.querySelector('.car-body .car-track');
+  const mediaTrack = car.querySelector('.car-media .car-track');
   const mediaSlides = car.querySelectorAll('.car-media .car-slide');
   const bodySlides = car.querySelectorAll('.car-body .car-slide');
   const dots = car.querySelectorAll('.car-dots .dot');
@@ -134,11 +136,24 @@ document.querySelectorAll('.story.carousel').forEach(car => {
   const nextBtn = car.querySelector('.car-arrow.next');
   const total = bodySlides.length;
   if (!total) return;
+
+  // size each track to fit all slides side by side, and each slide to one
+  // "page" of it, so translating the track by a multiple of its own width
+  // slides exactly one card at a time regardless of slide count
+  [bodyTrack, mediaTrack].forEach(track => { if (track) track.style.width = (total * 100) + '%'; });
+  [...bodySlides, ...mediaSlides].forEach(el => { el.style.width = (100 / total) + '%'; });
+
   let current = 0;
   const show = (index) => {
     current = (index + total) % total;
+    const pct = -(current * (100 / total));
+    if (bodyTrack) bodyTrack.style.transform = `translateX(${pct}%)`;
+    if (mediaTrack) mediaTrack.style.transform = `translateX(${pct}%)`;
     mediaSlides.forEach((el, i) => el.classList.toggle('active', i === current));
-    bodySlides.forEach((el, i) => el.classList.toggle('active', i === current));
+    bodySlides.forEach((el, i) => {
+      el.classList.toggle('active', i === current);
+      el.setAttribute('aria-hidden', i === current ? 'false' : 'true');
+    });
     dots.forEach((el, i) => el.classList.toggle('active', i === current));
   };
   // auto-advance on a timer, skipped for reduced-motion users; any manual

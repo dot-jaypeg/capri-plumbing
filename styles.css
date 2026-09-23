@@ -284,20 +284,27 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .story.carousel .wrap{display:block;position:relative}
 .car-card{background:var(--offwhite);border-radius:var(--radius-lg);overflow:hidden;
   display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:520px}
-.car-body{position:relative;display:grid;padding:64px}
-/* every slide shares the same grid cell so the row sizes to the tallest
-   one -- keeps the card a constant height across slides instead of
-   shrinking/growing to whichever slide happens to be active */
-.car-body .car-slide{grid-area:1/1;align-self:center;width:100%;
-  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s ease}
-.car-body .car-slide.active{opacity:1;visibility:visible;pointer-events:auto}
+/* overflow:hidden clips at the padding edge, not the content edge -- so
+   padding has to live INSIDE the clipped/sliding piece (on each slide, or
+   on an inner viewport for media) rather than on the element overflow is
+   set on, or the clip window ends up wider than the slide math assumes
+   and neighboring slides peek in at the edges */
+.car-body{position:relative;overflow:hidden}
+/* slides sit side by side in a flex row and the whole track translates --
+   a single-line flex row's height auto-stretches every item to match the
+   tallest one, so the card height still stays constant across slides */
+.car-body .car-track{display:flex;height:100%;transition:transform .6s var(--ease)}
+.car-body .car-slide{flex:none;min-width:0;padding:64px;display:flex;flex-direction:column;justify-content:center}
 .car-body h2{margin-top:0}
-.car-media{position:relative}
-.car-media .car-slide{position:absolute;inset:0;opacity:0;transition:opacity .4s ease}
-.car-media .car-slide.active{opacity:1}
+.car-body a.btn{margin-top:32px;align-self:flex-start}
+.car-media{position:relative;padding:28px}
+.car-media .car-viewport{position:relative;height:100%;border-radius:var(--radius-lg);overflow:hidden}
+.car-media .car-track{display:flex;height:100%;transition:transform .6s var(--ease)}
+.car-media .car-slide{flex:none;min-width:0;height:100%}
 .car-media img.car-slide{width:100%;height:100%;object-fit:cover;display:block}
 .car-media .car-icon{display:flex;align-items:center;justify-content:center;background:var(--navy)}
 .car-media .car-icon i{font-size:min(16vw,100px);color:var(--blue)}
+@media(prefers-reduced-motion:reduce){.car-body .car-track,.car-media .car-track{transition:none}}
 .car-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;
   background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);display:flex;align-items:center;
   justify-content:center;color:var(--navy);cursor:pointer;transition:background .2s,box-shadow .2s;z-index:3}
@@ -310,11 +317,11 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .car-dots .dot.active{background:var(--navy);transform:scale(1.25)}
 @media(max-width:900px){
   .car-card{grid-template-columns:1fr;min-height:0}
-  .car-media{order:-1;aspect-ratio:4/3}
-  .car-body{padding:40px 32px}
+  .car-media{order:-1;aspect-ratio:4/3;padding:16px}
+  .car-body .car-slide{padding:40px 32px}
   .car-arrow{display:none}
 }
-@media(max-width:520px){.car-body{padding:32px 24px}}
+@media(max-width:520px){.car-body .car-slide{padding:32px 24px}}
 
 /* ---------- services — hover-expand accordion ---------- */
 .prod-stack{display:flex;gap:4px;height:clamp(520px,74vh,780px);overflow:hidden;
