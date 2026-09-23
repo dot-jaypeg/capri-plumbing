@@ -6,7 +6,8 @@ node_modules/
 assets/video/CAPRI PODCAST_1.mp4
 assets/video/b-roll video.mov
 assets/video/b-roll video 2.mov
-assets/stock video/
+assets/stock-video/
+assets/stock-image/
 
 # Design reference only (has its own nested git repo) -- not part of the Capri deliverable
 reference website/
