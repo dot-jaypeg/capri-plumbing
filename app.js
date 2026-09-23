@@ -50,6 +50,28 @@ document.querySelectorAll('.faq-q').forEach(q => {
   });
 });
 
+// request-service forms: submit via fetch instead of a normal form POST so
+// visitors stay on the page and see a confirmation instead of Zapier's raw
+// catch-hook response. mode:'no-cors' means we can't read the response body
+// (Zapier's catch hook doesn't send CORS headers), but the request still
+// reaches Zapier -- a network-level failure is still catchable via .catch
+document.querySelectorAll('form.request-form').forEach(form => {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const btnText = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+    fetch(form.action, { method: 'POST', mode: 'no-cors', body: new FormData(form) })
+      .then(() => {
+        form.innerHTML = '<p class="form-success">Thanks — we got your request and will reach out shortly. For anything urgent, call <a href="tel:+19495940622">(949) 594-0622</a>.</p>';
+      })
+      .catch(() => {
+        if (btn) { btn.disabled = false; btn.textContent = btnText; }
+        alert('Something went wrong sending your request. Please call us at (949) 594-0622.');
+      });
+  });
+});
+
 // reveal on scroll, staggered per sibling group so grids cascade in
 const revealEls = Array.from(document.querySelectorAll('.reveal'));
 const groups = new Map();
