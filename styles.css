@@ -266,11 +266,11 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
      this out so content doesn't get stretched) so the absolutely-positioned
      .hero-bg video, which sizes itself off .hero's own height, fills the
      whole screen instead of just the content's box */
-  .hero .wrap{padding-top:108px;padding-bottom:24px;min-height:100vh}
+  .hero .wrap{padding-top:108px;padding-bottom:24px;min-height:100vh;text-align:center;align-items:center}
   .hero-logo{margin-bottom:14px}
   .hero-badge{display:none}
-  .hero h1{font-size:clamp(2.25rem,10vw,3.5rem)}
-  .hero .hero-actions{margin-top:24px}
+  .hero h1{font-size:clamp(2.5rem,11.5vw,3.75rem)}
+  .hero .hero-actions{margin-top:24px;justify-content:center}
   /* one CTA on mobile -- drop the phone-number ghost button, keep the quote button */
   .hero .hero-actions .btn-ghost{display:none}
 }
@@ -759,10 +759,12 @@ footer{background:var(--navy);color:var(--accent-lt);padding:74px 0 34px;positio
    actually fills the phone instead of a content-sized box */
 @media(max-width:760px){
   .subhero{height:100vh}
+  .subhero .wrap{text-align:center}
   .subhero p.sub{display:none}
   .subhero-stats{display:none}
+  .subhero-actions{justify-content:center}
   .subhero-actions .btn-ghost{display:none}
-  .subhero h1{font-size:clamp(2.25rem,9.5vw,3.25rem);max-width:none}
+  .subhero h1{font-size:clamp(2.5rem,10.5vw,3.5rem);max-width:none}
   /* this video is a side-by-side two-person shot -- a centered crop on a
      narrow phone lands right on the seam between them, so shift the crop
      window left to favor the left-hand person instead of the gap */
