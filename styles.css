@@ -365,7 +365,16 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
      clamp just truncates longer copy (like the HVAC slide) mid-sentence */
   .car-body .lead{display:block;-webkit-line-clamp:unset;overflow:visible}
 }
-@media(max-width:520px){.car-body .car-slide{padding:32px 24px}}
+/* on phones the image + headline were eating most of the first screen,
+   pushing the lead paragraph down behind the fixed call bar -- shrink the
+   photo and tighten the type so the whole card reads comfortably in view */
+@media(max-width:760px){
+  .car-media{aspect-ratio:16/8;padding:12px}
+  .car-body .car-slide{padding:26px 22px}
+  .car-body h2{font-size:clamp(22px,5.8vw,28px)}
+  .car-body .lead{font-size:14px;line-height:1.5;margin-top:10px}
+  .car-body a.btn{margin-top:14px}
+}
 
 /* ---------- services — hover-expand accordion ---------- */
 .prod-stack{display:flex;gap:4px;height:clamp(520px,74vh,780px);overflow:hidden;
@@ -771,10 +780,13 @@ footer{background:var(--navy);color:var(--accent-lt);padding:74px 0 34px;positio
      even with Safari's address bar showing) as the real value; see the
      matching note on .hero above */
   .subhero{height:100vh;height:100svh}
+  .subhero .wrap{text-align:center}
+  .subhero-text{max-width:none}
   .subhero p.sub{display:none}
   .subhero-stats{display:none}
+  .subhero-actions{justify-content:center}
   .subhero-actions .btn-ghost{display:none}
-  .subhero h1{font-size:clamp(2.5rem,10.5vw,3.5rem);max-width:none}
+  .subhero h1{font-size:clamp(2.75rem,11.5vw,3.85rem);max-width:none}
   /* this video is a side-by-side two-person shot -- a centered crop on a
      narrow phone lands right on the seam between them, so shift the crop
      window left to favor the left-hand person instead of the gap */
