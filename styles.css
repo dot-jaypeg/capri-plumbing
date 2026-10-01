@@ -262,7 +262,11 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
    own content -- so that content has to be compact enough to clear the
    call bar instead of running underneath it */
 @media(max-width:760px){
-  .hero .wrap{padding-top:108px;padding-bottom:24px}
+  /* back to a real viewport-height box (the 940px breakpoint above zeroes
+     this out so content doesn't get stretched) so the absolutely-positioned
+     .hero-bg video, which sizes itself off .hero's own height, fills the
+     whole screen instead of just the content's box */
+  .hero .wrap{padding-top:108px;padding-bottom:24px;min-height:100vh}
   .hero-logo{margin-bottom:14px}
   .hero-badge{display:none}
   .hero h1{font-size:clamp(2.25rem,10vw,3.5rem)}
@@ -738,6 +742,22 @@ footer{background:var(--navy);color:var(--accent-lt);padding:74px 0 34px;positio
 .subhero-stats .t{display:flex;flex-direction:column;line-height:1.15}
 .subhero-stats .t b{font-size:1.75rem;color:#fff;font-weight:700;font-family:var(--head)}
 .subhero-stats .t span{font-size:12.5px;color:var(--accent-lt)}
+
+/* mobile: every subhero strips down to a headline + one CTA -- the body
+   copy, the phone-number button, and the stat/badge row all go, and the
+   section itself goes full-screen so the background photo/video/slideshow
+   actually fills the phone instead of a content-sized box */
+@media(max-width:760px){
+  .subhero{height:100vh}
+  .subhero p.sub{display:none}
+  .subhero-stats{display:none}
+  .subhero-actions .btn-ghost{display:none}
+  .subhero h1{font-size:clamp(2.25rem,9.5vw,3.25rem);max-width:none}
+  /* this video is a side-by-side two-person shot -- a centered crop on a
+     narrow phone lands right on the seam between them, so shift the crop
+     window left to favor the left-hand person instead of the gap */
+  .subhero-about .subhero-bg video{object-position:20% center}
+}
 
 .prose{max-width:760px}
 .prose p{color:var(--navy);font-size:17px;margin-top:18px;line-height:1.75}
