@@ -617,12 +617,13 @@ footer{background:var(--navy);color:var(--accent-lt);padding:74px 0 34px;positio
 /* ============================================================
    SUB-PAGE COMPONENTS (shared across interior pages)
    ============================================================ */
+/* top-aligned with a viewport-relative padding (instead of centering, or a
+   padding that only changes at a breakpoint) so the heading's clearance
+   under the fixed nav scales continuously across every frame size instead
+   of snapping at a breakpoint while the window is being resized */
 .subhero{position:relative;background:var(--navy);color:#fff;overflow:hidden;margin-top:-84px;
-  height:576px;display:flex;align-items:center}
-@media(max-width:760px){
-  .subhero{height:572px;align-items:flex-start}
-  .subhero .wrap{padding-top:96px}
-}
+  height:576px;display:flex;align-items:flex-start}
+.subhero .wrap{padding-top:clamp(92px,12vw,140px)}
 .subhero-bg{position:absolute;left:0;right:0;top:-8%;height:118%;z-index:0;will-change:transform}
 @media(prefers-reduced-motion:reduce){.subhero-bg{transform:none!important}}
 .subhero-bg img,.subhero-bg video{width:100%;height:100%;object-fit:cover;opacity:.6}
@@ -655,18 +656,14 @@ footer{background:var(--navy);color:var(--accent-lt);padding:74px 0 34px;positio
 .crumb .cur{color:#fff}
 .subhero .eyebrow{color:var(--accent-lt)}
 .subhero .eyebrow::before{background:var(--blue)}
-.subhero h1{font-size:clamp(2.5rem,4.2vw,4rem);font-weight:700;letter-spacing:-.03em;margin-top:18px;max-width:18ch;color:#fff}
+.subhero h1{font-size:clamp(23px,4.2vw,4rem);line-height:1.18;font-weight:700;letter-spacing:-.03em;
+  margin-top:18px;max-width:18ch;color:#fff}
 .subhero h1 em{font-style:normal;color:#fff}
 .subhero p.sub{color:var(--accent-lt);font-size:18px;margin-top:20px;max-width:600px;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .subhero-actions{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
-@media(max-width:760px){.subhero h1{font-size:clamp(2.25rem,5vw,3rem)}}
-@media(max-width:520px){
-  .subhero h1{font-size:23px;line-height:1.18}
-  .subhero-stats{margin-top:14px}
-}
 
-.subhero-stats{display:flex;gap:30px;margin-top:22px;flex-wrap:wrap}
+.subhero-stats{display:flex;gap:30px;margin-top:clamp(14px,2.8vw,22px);flex-wrap:wrap}
 .subhero-stats .t{display:flex;flex-direction:column;line-height:1.15}
 .subhero-stats .t b{font-size:1.75rem;color:#fff;font-weight:700;font-family:var(--head)}
 .subhero-stats .t span{font-size:12.5px;color:var(--accent-lt)}

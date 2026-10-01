@@ -100,6 +100,19 @@ if (parallaxEls.length && !matchMedia('(prefers-reduced-motion: reduce)').matche
   onParallax();
 }
 
+// some mobile browsers only honor the `muted` DOM property (not the HTML
+// attribute) when deciding whether to allow autoplay, and silently fall
+// back to a paused state with a native play button -- set it explicitly
+// and (re)trigger play() so background videos never get stuck like that
+document.querySelectorAll('video[autoplay]').forEach(v => {
+  v.muted = true;
+  v.playsInline = true;
+  const tryPlay = () => v.play().catch(() => {});
+  tryPlay();
+  v.addEventListener('loadedmetadata', tryPlay);
+  v.addEventListener('canplay', tryPlay);
+});
+
 // silent looping background clips: don't force autoplay on users who asked
 // for reduced motion -- leave them on the poster frame instead
 if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
