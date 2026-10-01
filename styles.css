@@ -178,6 +178,7 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
   .nav-toggle{display:flex}
 }
 @media(max-width:520px){.nav .logo img{height:48px}header.nav.nav-transparent .logo img{height:38px}}
+@media(max-width:760px){.nav-cta .btn-primary{padding:10px 18px;font-size:13px}}
 
 /* ---------- HERO (video) ---------- */
 .hero{position:relative;background:var(--navy);color:#fff;overflow:hidden;margin-top:-84px}
@@ -251,9 +252,11 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 @media(max-width:760px){
   .hero .wrap{padding-top:108px;padding-bottom:24px}
   .hero-logo{margin-bottom:14px}
-  .hero h1{font-size:clamp(1.625rem,7.5vw,3rem)}
-  .hero-badge{margin-top:16px}
-  .hero .hero-actions{margin-top:18px}
+  .hero-badge{display:none}
+  .hero h1{font-size:clamp(2.25rem,10vw,3.5rem)}
+  .hero .hero-actions{margin-top:24px}
+  /* one CTA on mobile -- drop the phone-number ghost button, keep the quote button */
+  .hero .hero-actions .btn-ghost{display:none}
 }
 
 /* ---------- offer strip ---------- */
@@ -323,8 +326,13 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
   transition:background .2s,transform .2s}
 .car-dots .dot.active{background:var(--navy);transform:scale(1.25)}
 @media(max-width:900px){
-  .car-card{grid-template-columns:1fr;grid-template-rows:auto auto;height:auto}
-  .car-media{order:-1;aspect-ratio:16/9;padding:16px}
+  /* a 1fr column still defers to its item's min-content width unless told
+     not to -- without minmax(0,...) the slide track's forced 300% width
+     pushes the column (and the card) wider than the screen, running text
+     off the right edge instead of wrapping inside it */
+  .car-card{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;height:auto}
+  .car-body{min-width:0}
+  .car-media{order:-1;aspect-ratio:16/9;padding:16px;min-width:0}
   .car-body .car-slide{padding:40px 32px}
   .car-body h2{font-size:clamp(26px,6vw,38px)}
 }
@@ -376,7 +384,7 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .prod-hint{margin-top:22px;text-align:center;font-size:11px;font-weight:600;letter-spacing:.3em;
   text-transform:uppercase;color:var(--accent)}
 @media(max-width:820px){
-  .prod-stack{flex-direction:column;height:auto;background:transparent;gap:14px}
+  .prod-stack{flex-direction:column;height:auto;background:transparent;gap:0}
   .prod-card{flex:none;height:56vh;min-height:320px;border-radius:var(--radius-lg)}
   .prod-card:hover{flex:none}
   .prod-stack:hover .prod-card:not(:hover) img{filter:none}
@@ -439,7 +447,15 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .how-step h3{font-size:19px}
 .how-step p{color:var(--accent);font-size:14.5px;margin-top:10px}
 @media(max-width:900px){.how-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.how-grid{grid-template-columns:1fr}}
+/* mobile: swipe through the steps one at a time (scroll-snap) instead of
+   stacking all 4 vertically and making the visitor scroll past each one */
+@media(max-width:760px){
+  .how-grid{display:flex;grid-template-columns:none;gap:16px;margin-top:40px;
+    overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    padding-bottom:6px;scrollbar-width:none}
+  .how-grid::-webkit-scrollbar{display:none}
+  .how-step{flex:0 0 80%;scroll-snap-align:center}
+}
 /* navy variant */
 .how.navy{background:var(--navy)}
 .how.navy .eyebrow{color:var(--accent-lt)}
@@ -479,6 +495,9 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .follow-row a:hover{background:rgba(255,255,255,.16)}
 .follow-row i{font-size:19px;color:currentColor}
 @media(max-width:820px){.social-grid{grid-template-columns:1fr;max-width:320px;margin-left:auto;margin-right:auto}}
+/* keep all 3 videos in one row like desktop even on phones -- just scaled
+   down -- rather than stacking them full-width and forcing a long scroll */
+@media(max-width:760px){.social-grid{grid-template-columns:repeat(3,1fr);max-width:none;gap:8px}}
 
 /* ---------- reviews ---------- */
 .reviews .rv-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
@@ -488,6 +507,11 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .reviews .rv-score b{font-family:var(--head);font-size:22px}
 .reviews .rv-score span{font-size:13px;color:var(--accent)}
 .rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
+/* desktop: the track is a transparent wrapper so the 3 real cards still lay
+   out directly in the grid; the duplicate set stays hidden until mobile
+   turns this into a looping marquee */
+.rv-track{display:contents}
+.rv-card.rv-dup{display:none}
 .rv-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:32px 30px;box-shadow:var(--shadow-sm);
   transition:box-shadow .3s,transform .3s var(--ease)}
 .rv-card:hover{box-shadow:var(--shadow);transform:translateY(-4px)}
@@ -500,6 +524,20 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .rv-card .rv-by span{font-size:12.5px;color:var(--accent);display:flex;align-items:center;gap:5px}
 .rv-card .rv-by span i{font-size:13px}
 @media(max-width:900px){.rv-grid{grid-template-columns:1fr}}
+/* mobile: an auto-scrolling horizontal loop instead of a tall vertical
+   stack -- the track holds the 3 cards plus an identical duplicate set,
+   and the animation slides exactly one set-width (-50%) before snapping
+   back to 0, which is invisible since the duplicate is pixel-identical */
+@media(max-width:760px){
+  .rv-grid{display:block;overflow:hidden;margin-top:36px;
+    mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .rv-track{display:flex;gap:20px;width:max-content;animation:rvMarquee 32s linear infinite}
+  .rv-grid:hover .rv-track{animation-play-state:paused}
+  .rv-card,.rv-card.rv-dup{display:block;flex:0 0 min(78vw,340px)}
+}
+@keyframes rvMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.rv-track{animation:none}}
 
 /* ---------- membership band ---------- */
 .finance{position:relative;color:#fff;background:var(--navy);overflow:hidden}
