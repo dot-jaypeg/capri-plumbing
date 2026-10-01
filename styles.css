@@ -165,7 +165,19 @@ body:has(.hero) header.nav.nav-transparent .logo{opacity:0;pointer-events:none}
 .nav .drop a{display:block;padding:11px 14px;border-radius:var(--radius);font-size:14px;font-weight:500;color:var(--accent)}
 .nav .drop a::after{display:none}
 .nav .drop a:hover{background:var(--offwhite);color:var(--navy)}
-.mobile-menu nav .sub{display:grid;padding-left:14px;border-bottom:1px solid rgba(255,255,255,.12)}
+/* Plumbing/HVAC rows expand their subpages instead of always showing them --
+   grid-template-rows 0fr->1fr animates to the real content height at any
+   length (same technique as the FAQ accordion), with the inner .sub-in as
+   the overflow:hidden host since a 0fr row still has to clip its content */
+.mobile-menu nav .mm-row{display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.12)}
+.mobile-menu nav .mm-row a{border-bottom:0;flex:1}
+.mm-plus{flex:none;width:40px;height:40px;display:grid;place-items:center;background:none;border:0;
+  color:#fff;cursor:pointer}
+.mm-plus i{font-size:15px;transition:transform .35s var(--ease)}
+.mm-item.open .mm-plus i{transform:rotate(45deg)}
+.mobile-menu nav .sub{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease);padding-left:14px}
+.mm-item.open .sub{grid-template-rows:1fr}
+.mobile-menu nav .sub .sub-in{overflow:hidden;min-height:0;display:grid}
 .mobile-menu nav .sub a{font-size:16px;font-weight:500;padding:11px 0;border-bottom:0;color:var(--accent-lt)}
 .nav .nav-cta{display:flex;align-items:center;gap:18px}
 header.nav.nav-transparent nav>ul>li>a{color:#fff}
@@ -529,18 +541,23 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .rv-card .rv-by span i{font-size:13px}
 @media(max-width:900px){.rv-grid{grid-template-columns:1fr}}
 /* mobile: an auto-scrolling horizontal loop instead of a tall vertical
-   stack -- the track holds the 3 cards plus an identical duplicate set,
-   and the animation slides exactly one set-width (-50%) before snapping
-   back to 0, which is invisible since the duplicate is pixel-identical */
+   stack -- the track holds the 3 cards plus an identical duplicate set, and
+   the animation slides by --rv-loop (the exact pixel width of one set,
+   measured in app.js) before snapping back to 0. A plain -50% looks close
+   but isn't exact once gap is involved: 6 cards means 5 gaps across the
+   whole track, so half of that total is half a gap short of where the
+   duplicate set actually starts -- a few px, but enough to stutter every
+   loop. --rv-loop has a 50% fallback only for the instant before JS runs */
 @media(max-width:760px){
   .rv-grid{display:block;overflow:hidden;margin-top:36px;
     mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
     -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-  .rv-track{display:flex;gap:20px;width:max-content;animation:rvMarquee 32s linear infinite}
+  .rv-track{display:flex;gap:16px;width:max-content;--rv-loop:50%;
+    animation:rvMarquee 26s linear infinite}
   .rv-grid:hover .rv-track{animation-play-state:paused}
-  .rv-card,.rv-card.rv-dup{display:block;flex:0 0 min(78vw,340px)}
+  .rv-card,.rv-card.rv-dup{display:block;flex:0 0 min(64vw,260px);padding:26px 24px}
 }
-@keyframes rvMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes rvMarquee{from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--rv-loop)))}}
 @media(prefers-reduced-motion:reduce){.rv-track{animation:none}}
 
 /* ---------- membership band ---------- */

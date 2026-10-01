@@ -190,6 +190,62 @@ document.querySelectorAll('.story.carousel').forEach(car => {
   startAuto();
 });
 
+// how-it-works: on mobile the 4 steps sit in a scroll-snap track (swipeable
+// by hand) -- this drives the same track on a timer so it shuffles through
+// the cards automatically too, re-deriving the "current" card from actual
+// scroll position each tick so a manual swipe mid-cycle doesn't fight it
+(function () {
+  const grid = document.querySelector('.how-grid');
+  if (!grid) return;
+  const mqMobile = matchMedia('(max-width:760px)');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const posOf = (el) => el.getBoundingClientRect().left - grid.getBoundingClientRect().left + grid.scrollLeft;
+  let timer;
+  const advance = () => {
+    const items = [...grid.querySelectorAll('.how-step')];
+    if (items.length < 2) return;
+    const positions = items.map(posOf);
+    let current = 0;
+    positions.forEach((p, i) => { if (Math.abs(p - grid.scrollLeft) < Math.abs(positions[current] - grid.scrollLeft)) current = i; });
+    const next = (current + 1) % items.length;
+    grid.scrollTo({ left: positions[next], behavior: 'smooth' });
+  };
+  const stop = () => clearInterval(timer);
+  const start = () => { stop(); if (mqMobile.matches && !reduceMotion.matches) timer = setInterval(advance, 3200); };
+  mqMobile.addEventListener('change', start);
+  // a manual swipe should pause the auto-advance, not fight it -- resume after
+  grid.addEventListener('touchstart', stop, { passive: true });
+  grid.addEventListener('touchend', start, { passive: true });
+  start();
+})();
+
+// reviews marquee: -50% alone isn't an exact repeat boundary once a flex
+// `gap` is involved (6 cards means 5 gaps total, so half of that total is
+// half a gap short of where the duplicate set truly starts) -- measure the
+// real pixel width of one set instead and drive the loop off that, so the
+// wrap-around is seamless instead of stuttering every cycle
+(function () {
+  const track = document.querySelector('.rv-track');
+  if (!track) return;
+  const setLoopDistance = () => {
+    const cards = [...track.querySelectorAll('.rv-card')];
+    const dupIndex = cards.findIndex(c => c.classList.contains('rv-dup'));
+    if (dupIndex < 1) return;
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    let dist = 0;
+    for (let i = 0; i < dupIndex; i++) dist += cards[i].getBoundingClientRect().width + gap;
+    track.style.setProperty('--rv-loop', dist + 'px');
+    // restart the animation so the new distance applies cleanly instead of
+    // mid-interpolating toward it from whatever it was already using
+    track.style.animation = 'none';
+    void track.offsetWidth;
+    track.style.animation = '';
+  };
+  setLoopDistance();
+  let resizeTimer;
+  addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(setLoopDistance, 150); });
+})();
+
 // mobile off-canvas menu
 (function () {
   const toggle = document.querySelector('.nav-toggle');
@@ -203,4 +259,16 @@ document.querySelectorAll('.story.carousel').forEach(car => {
   closeBtn && closeBtn.addEventListener('click', close);
   backdrop && backdrop.addEventListener('click', close);
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+
+  // Plumbing/HVAC rows: tapping the + expands that row's subpages instead
+  // of navigating -- tapping the link itself still goes straight to the hub
+  // page, same as before
+  menu.querySelectorAll('.mm-item .mm-plus').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.mm-item');
+      const nowOpen = !item.classList.contains('open');
+      item.classList.toggle('open', nowOpen);
+      btn.setAttribute('aria-expanded', String(nowOpen));
+    });
+  });
 })();
