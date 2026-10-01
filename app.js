@@ -6,8 +6,12 @@
     const wait = Math.max(TRANSITION_MS - (Date.now() - started), 0);
     setTimeout(() => document.body.classList.add('loaded'), wait);
   };
-  if (document.readyState === 'complete') reveal();
-  else addEventListener('load', reveal);
+  // gate on DOMContentLoaded, not the full `load` event -- `load` waits for
+  // every resource including the autoplaying background videos, which on
+  // mobile networks can take many seconds and makes the splash (and so
+  // every page transition, since it re-shows on the way out) feel stuck
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', reveal);
+  else reveal();
 
   document.addEventListener('click', (e) => {
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
