@@ -129,6 +129,7 @@ body.loaded #preloader{opacity:0;visibility:hidden;transition:opacity .4s ease,v
 .utility .u-item i{font-size:14px;color:var(--blue)}
 .utility .u-offer{color:#fff;font-weight:600;font-size:12.5px;letter-spacing:.02em}
 @media(max-width:900px){.utility .u-left .u-item.hide-sm{display:none}.utility .u-offer{display:none}}
+@media(max-width:760px){.utility{display:none}}
 
 /* ---------- header ---------- */
 header.nav{
@@ -242,6 +243,17 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 
 @media(max-width:940px){
   .hero .wrap{padding-top:160px;padding-bottom:60px;min-height:0}
+}
+/* phones: the fixed bottom call bar (.mobile-callbar) eats into the usable
+   viewport, and with min-height:0 above, the hero is only as tall as its
+   own content -- so that content has to be compact enough to clear the
+   call bar instead of running underneath it */
+@media(max-width:760px){
+  .hero .wrap{padding-top:108px;padding-bottom:24px}
+  .hero-logo{margin-bottom:14px}
+  .hero h1{font-size:clamp(1.625rem,7.5vw,3rem)}
+  .hero-badge{margin-top:16px}
+  .hero .hero-actions{margin-top:18px}
 }
 
 /* ---------- offer strip ---------- */
