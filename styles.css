@@ -265,12 +265,21 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
   /* back to a real viewport-height box (the 940px breakpoint above zeroes
      this out so content doesn't get stretched) so the absolutely-positioned
      .hero-bg video, which sizes itself off .hero's own height, fills the
-     whole screen instead of just the content's box */
-  .hero .wrap{padding-top:108px;padding-bottom:24px;min-height:100vh;text-align:center;align-items:center}
+     whole screen instead of just the content's box.
+     100vh on real mobile Safari is the height WITH the address bar hidden
+     -- taller than what's actually visible when the page first loads, so
+     content vertically centered in a 100vh box can render below the fold,
+     under the fixed call bar. 100svh ("small" viewport) is the guaranteed-
+     visible height instead; the 100vh line stays first as a fallback for
+     browsers that don't support svh (that declaration is simply invalid
+     there, so it's ignored and the vh value above it still applies).
+     padding-bottom is also widened to the call bar's own height (70px)
+     plus breathing room, so centered content can never land behind it. */
+  .hero .wrap{padding-top:108px;padding-bottom:94px;min-height:100vh;min-height:100svh}
   .hero-logo{margin-bottom:14px}
   .hero-badge{display:none}
   .hero h1{font-size:clamp(2.5rem,11.5vw,3.75rem)}
-  .hero .hero-actions{margin-top:24px;justify-content:center}
+  .hero .hero-actions{margin-top:24px}
   /* one CTA on mobile -- drop the phone-number ghost button, keep the quote button */
   .hero .hero-actions .btn-ghost{display:none}
 }
@@ -758,11 +767,12 @@ footer{background:var(--navy);color:var(--accent-lt);padding:74px 0 34px;positio
    section itself goes full-screen so the background photo/video/slideshow
    actually fills the phone instead of a content-sized box */
 @media(max-width:760px){
-  .subhero{height:100vh}
-  .subhero .wrap{text-align:center}
+  /* vh fallback, svh ("small" viewport -- the guaranteed-visible height
+     even with Safari's address bar showing) as the real value; see the
+     matching note on .hero above */
+  .subhero{height:100vh;height:100svh}
   .subhero p.sub{display:none}
   .subhero-stats{display:none}
-  .subhero-actions{justify-content:center}
   .subhero-actions .btn-ghost{display:none}
   .subhero h1{font-size:clamp(2.5rem,10.5vw,3.5rem);max-width:none}
   /* this video is a side-by-side two-person shot -- a centered crop on a
