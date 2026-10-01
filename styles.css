@@ -335,6 +335,10 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
   .car-media{order:-1;aspect-ratio:16/9;padding:16px;min-width:0}
   .car-body .car-slide{padding:40px 32px}
   .car-body h2{font-size:clamp(26px,6vw,38px)}
+  /* desktop clamps the lead to 4 lines to protect a FIXED card height --
+     mobile's card height is auto, so there's nothing to protect and the
+     clamp just truncates longer copy (like the HVAC slide) mid-sentence */
+  .car-body .lead{display:block;-webkit-line-clamp:unset;overflow:visible}
 }
 @media(max-width:520px){.car-body .car-slide{padding:32px 24px}}
 
