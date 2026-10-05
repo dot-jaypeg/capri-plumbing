@@ -320,7 +320,7 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
 .story.carousel .wrap{display:block;position:relative;max-width:none;padding:0 2%}
 .car-card{background:var(--offwhite);border-radius:var(--radius-lg);overflow:hidden;
   display:grid;grid-template-columns:35fr 65fr;grid-template-rows:minmax(0,1fr);align-items:stretch;
-  height:clamp(420px,62vh,620px)}
+  height:clamp(546px,81vh,806px)}
 /* overflow:hidden clips at the padding edge, not the content edge -- so
    padding has to live INSIDE the clipped/sliding piece (on each slide, or
    on an inner viewport for media) rather than on the element overflow is
@@ -353,7 +353,7 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
      off the right edge instead of wrapping inside it */
   .car-card{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;height:auto}
   .car-body{min-width:0}
-  .car-media{order:-1;aspect-ratio:16/9;padding:16px;min-width:0}
+  .car-media{order:-1;aspect-ratio:16/11.7;padding:16px;min-width:0}
   .car-body .car-slide{padding:40px 32px}
   .car-body h2{font-size:clamp(26px,6vw,38px)}
   /* desktop clamps the lead to 4 lines to protect a FIXED card height --
@@ -366,7 +366,7 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
    photo off viewport height (not width, which varies independently of how
    tall a given phone actually is) and shrink the type/padding to match */
 @media(max-width:760px){
-  .car-media{aspect-ratio:auto;height:clamp(110px,18vh,190px);height:clamp(110px,18svh,190px);padding:10px}
+  .car-media{aspect-ratio:auto;height:clamp(143px,23.4vh,247px);height:clamp(143px,23.4svh,247px);padding:10px}
   .car-body .car-slide{padding:18px 18px}
   .car-body h2{font-size:clamp(18px,4.6vw,22px);line-height:1.15}
   .car-body .lead{font-size:12.5px;line-height:1.42;margin-top:8px}
