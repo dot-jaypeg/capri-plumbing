@@ -365,15 +365,16 @@ header.nav.nav-transparent .nav-toggle span{background:#fff}
      clamp just truncates longer copy (like the HVAC slide) mid-sentence */
   .car-body .lead{display:block;-webkit-line-clamp:unset;overflow:visible}
 }
-/* on phones the image + headline were eating most of the first screen,
-   pushing the lead paragraph down behind the fixed call bar -- shrink the
-   photo and tighten the type so the whole card reads comfortably in view */
+/* on phones the whole card (photo + headline + copy + button) needs to
+   read in one frame without scrolling into the fixed call bar -- size the
+   photo off viewport height (not width, which varies independently of how
+   tall a given phone actually is) and shrink the type/padding to match */
 @media(max-width:760px){
-  .car-media{aspect-ratio:16/10.4;padding:12px}
-  .car-body .car-slide{padding:26px 22px}
-  .car-body h2{font-size:clamp(22px,5.8vw,28px)}
-  .car-body .lead{font-size:14px;line-height:1.5;margin-top:10px}
-  .car-body a.btn{margin-top:14px}
+  .car-media{aspect-ratio:auto;height:clamp(110px,18vh,190px);height:clamp(110px,18svh,190px);padding:10px}
+  .car-body .car-slide{padding:18px 18px}
+  .car-body h2{font-size:clamp(18px,4.6vw,22px);line-height:1.15}
+  .car-body .lead{font-size:12.5px;line-height:1.42;margin-top:8px}
+  .car-body a.btn{margin-top:10px;padding:10px 20px;font-size:13px}
 }
 
 /* ---------- services — hover-expand accordion ---------- */
