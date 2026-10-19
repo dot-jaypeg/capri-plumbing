@@ -1,12 +1,8 @@
 {
   "cleanUrls": false,
-  "trailingSlash": false,
-  "redirects": [
-    { "source": "/toilet-overflow", "destination": "https://lp.capriplumbing.com/toilet-overflow/", "type": 301 },
-    { "source": "/lp", "destination": "https://lp.capriplumbing.com/", "type": 301 },
-    { "source": "/lp/**", "destination": "https://lp.capriplumbing.com/", "type": 301 }
-  ],
   "rewrites": [
-    { "source": "/", "destination": "/index.html" }
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/toilet-overflow/", "destination": "/toilet-overflow/index.html" },
+    { "source": "/toilet-overflow", "destination": "/toilet-overflow/index.html" }
   ]
 }
