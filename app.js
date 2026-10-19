@@ -32,7 +32,7 @@
 // sticky header: shadow + transparent-over-hero crossfade
 const nav = document.getElementById('nav');
 if (nav) {
-  const heroEl = document.querySelector('.hero, .subhero');
+  const heroEl = document.querySelector('.hero, .subhero, .lp-hero');
   const updateNav = () => {
     nav.classList.toggle('scrolled', scrollY > 10);
     if (heroEl) {

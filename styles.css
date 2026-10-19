@@ -923,3 +923,92 @@ body.mm-open{overflow:hidden}
    apply to the section that comes AFTER the one that should show through */
 .angled-top{clip-path:polygon(0 36px,100% 0,100% 100%,0 100%);margin-top:-36px}
 @media(max-width:640px){.angled-top{clip-path:none;margin-top:0}}
+
+/* ============================================================
+   AD LANDING PAGES (/<slug>/index.html) -- hero with the quote form
+   beside the copy, sized so the whole hero (incl. the form's submit
+   button) sits above the fold at every screen size. Re-run the fold
+   check after changing any number here.
+   Chrome above the hero: utility bar 46px + header 84px on desktop;
+   utility bar hides <=760px, where the 70px fixed call bar appears.
+   ============================================================ */
+.lp-hero{position:relative;background:var(--navy);color:#fff;overflow:hidden;margin-top:-84px;padding-top:84px;
+  display:flex;align-items:center;min-height:calc(100vh - 46px);min-height:calc(100svh - 46px)}
+.lp-hero>.wrap{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  gap:clamp(28px,4vw,64px);align-items:center;padding-top:clamp(16px,3vh,40px);padding-bottom:clamp(16px,3vh,40px)}
+.lp-hero .hero-copy{max-width:620px}
+/* the homepage hero's left-heavy navy wash, so photo detail never fights the copy */
+.lp-hero .subhero-bg img{opacity:1}
+.lp-hero .subhero-bg::after{background:
+  linear-gradient(180deg,rgba(3,16,43,.85) 0%,rgba(3,16,43,0) 18%),
+  linear-gradient(105deg,rgba(3,16,43,.95) 0%,rgba(3,16,43,.86) 45%,rgba(3,16,43,.6) 100%)}
+@media(max-width:920px){.lp-hero .subhero-bg::after{background:rgba(3,16,43,.84)}}
+.lp-hero .eyebrow{color:var(--accent-lt)}
+.lp-hero h1{color:#fff;font-size:clamp(2.4rem,min(5vw,8.5vh),4.6rem);margin-top:clamp(10px,1.8vh,18px)}
+.lp-hero h1 em{font-style:normal;color:var(--blue)}
+.lp-hero .lead{color:var(--accent-lt);font-size:clamp(16px,2.1vh,19px);margin-top:clamp(12px,2.2vh,22px);max-width:560px}
+.lp-hero .lead-sm{display:none}
+.lp-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:clamp(16px,3vh,32px)}
+.lp-hero .lp-actions .btn-primary{background:#fff;color:var(--navy)}
+.lp-hero .lp-actions .btn-primary:hover{background:var(--blue-dark);color:#fff}
+.hero-checks{list-style:none;display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:clamp(14px,2.6vh,28px)}
+.hero-checks li{display:flex;align-items:center;gap:9px;font-size:14.5px;font-weight:500;color:#fff}
+.hero-checks i{font-size:15px;color:var(--blue)}
+.lp-hero .fc-card{padding:clamp(20px,3.4vh,44px) clamp(22px,2.6vw,42px);scroll-margin-top:100px}
+.lp-hero .fc-card h3{color:var(--navy);font-size:clamp(21px,3vh,26px)}
+.lp-hero .fc-card .fc-sub{margin-bottom:clamp(10px,2vh,22px)}
+.lp-hero .fc-card form{gap:clamp(8px,1.4vh,14px)}
+.lp-hero .fc-card .row{gap:clamp(8px,1.4vh,14px)}
+.lp-hero .fc-card input,.lp-hero .fc-card select{padding-top:clamp(9px,1.5vh,14px);padding-bottom:clamp(9px,1.5vh,14px)}
+.lp-hero .fc-card button{padding-top:clamp(13px,2vh,18px);padding-bottom:clamp(13px,2vh,18px)}
+.form-note{margin-top:12px;text-align:center;font-size:14px;color:var(--accent)}
+.form-note a{color:var(--navy);font-weight:600;text-decoration:underline}
+@media(min-width:921px) and (max-height:760px){.lp-hero .fc-card .fc-sub{display:none}.lp-hero .fc-card h3{margin-bottom:12px}}
+@media(min-width:921px) and (max-height:620px){.lp-hero .hero-checks,.lp-hero .form-note{display:none}}
+/* phones/tablets: copy fills the first screen, the form starts at the fold */
+@media(max-width:920px){
+  .lp-hero{display:block;min-height:0;padding-bottom:clamp(40px,8vw,64px)}
+  .lp-hero>.wrap{grid-template-columns:minmax(0,1fr);gap:8px;padding-top:0;padding-bottom:0}
+  .lp-hero .hero-copy{max-width:none;display:flex;flex-direction:column;justify-content:center;
+    min-height:calc(100vh - 130px);min-height:calc(100svh - 130px);padding:clamp(16px,3.5vh,40px) 0}
+  .lp-hero h1{font-size:clamp(2.3rem,min(10.5vw,7vh),3.8rem)}
+  .lp-hero .lead-lg{display:none}
+  .lp-hero .lead-sm{display:block}
+  .lp-hero .fc-card{scroll-margin-top:90px}
+}
+@media(max-width:760px){
+  .lp-hero .hero-copy{min-height:calc(100vh - 154px);min-height:calc(100svh - 154px);text-align:center;align-items:center}
+  .lp-hero .lp-actions,.hero-checks{justify-content:center}
+  .lp-hero .eyebrow::before{display:none}
+}
+@media(max-width:600px){
+  .lp-hero .lp-actions{width:100%}
+  .lp-hero .lp-actions .btn{width:100%}
+  .lp-hero .lp-actions .hero-quote{display:none}
+  .hero-checks{gap:6px 16px}
+  .hero-checks li{font-size:13.5px}
+}
+@media(max-width:920px) and (max-height:600px){.lp-hero .hero-checks{display:none}}
+
+.lp-stats{background:var(--navy);border-top:1px solid var(--line-dark)}
+.lp-stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-top:34px;padding-bottom:34px}
+.lp-stats .t{display:flex;flex-direction:column;line-height:1.2}
+.lp-stats .t b{font-family:var(--head);font-size:clamp(1.5rem,2.4vw,2rem);color:#fff}
+.lp-stats .t span{font-size:13.5px;color:var(--accent-lt);margin-top:4px}
+@media(max-width:760px){.lp-stats .wrap{grid-template-columns:1fr 1fr;gap:22px 18px;padding-top:28px;padding-bottom:28px}}
+
+.lp-offer{background:var(--blue-dark);color:#fff}
+.lp-offer .wrap{display:flex;align-items:center;justify-content:center;gap:16px 28px;flex-wrap:wrap;
+  padding-top:22px;padding-bottom:22px;text-align:center}
+.lp-offer p{font-size:16px}
+.lp-offer b{font-family:var(--head)}
+.lp-offer .btn-primary{background:#fff;color:var(--navy)}
+.lp-offer .btn-primary:hover{background:var(--navy);color:#fff}
+
+.lp-block-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.area .split-media{margin-top:0}
+@media(max-width:520px){.lp-block-actions .btn{width:100%}}
+
+/* landing-page call bar shows the number itself (call tracking swaps on it) */
+.lp-callbar a.call{flex:1.5}
+@media(max-width:360px){.lp-callbar a{font-size:13px;padding:13px 6px}}
