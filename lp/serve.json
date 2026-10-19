@@ -1,0 +1,17 @@
+{
+  "cleanUrls": false,
+  "redirects": [
+    { "source": "/", "destination": "https://capriplumbing.com/", "type": 302 }
+  ],
+  "rewrites": [
+    { "source": "/toilet-overflow/", "destination": "/toilet-overflow/index.html" },
+    { "source": "/toilet-overflow", "destination": "/toilet-overflow/index.html" },
+    { "source": "/privacy/", "destination": "/privacy/index.html" },
+    { "source": "/privacy", "destination": "/privacy/index.html" },
+    { "source": "/terms/", "destination": "/terms/index.html" },
+    { "source": "/terms", "destination": "/terms/index.html" }
+  ],
+  "headers": [
+    { "source": "**/*.@(css|js)", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] }
+  ]
+}
